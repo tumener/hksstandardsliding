@@ -1,0 +1,16 @@
+PODS:
+  - ECSlidingViewController (2.0.3)
+  - FTPManager (1.6.5)
+  - MBProgressHUD (0.9)
+
+DEPENDENCIES:
+  - ECSlidingViewController (~> 2.0.3)
+  - FTPManager (~> 1.6.5)
+  - MBProgressHUD (~> 0.8)
+
+SPEC CHECKSUMS:
+  ECSlidingViewController: e79fe856bfb1a99a39c995377a1943e50f7647eb
+  FTPManager: 7406d9480622bca354fc4aad9086a9db468edbf2
+  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
+
+COCOAPODS: 0.34.2
