@@ -7,6 +7,7 @@
 //
 
 #import "KSDownloader.h"
+#import "HKSDefinitions.h"
 #import "MBProgressHUD.h"
 #import "Reachability.h"
 #import "KSBackend.h"
@@ -47,9 +48,9 @@
     return self;
 }
 
-- (BOOL)ftpSettingsReady {
-    return _settings.documentsFtpServer.length>0 && _settings.documentsFtpUName.length>0 && _settings.documentsFtpUName.length>0;
-}
+//- (BOOL)ftpSettingsReady {
+//    return _settings.documentsFtpServer.length>0 && _settings.documentsFtpUName.length>0 && _settings.documentsFtpUName.length>0;
+//}
 
 - (UIAlertView*)alertCheckInternet{
     return [[UIAlertView alloc] initWithTitle:NSLocalizedString(LSCommonError, nil) message:NSLocalizedString(LSCheckInternetMsg, nil) delegate:nil cancelButtonTitle:NSLocalizedString(LSCommonOk, nil) otherButtonTitles:nil, nil];
@@ -60,8 +61,8 @@
     if (self.backend.internetReachability.currentReachabilityStatus == NotReachable) {
         [[self alertCheckInternet] show];
     } else {
-        NSString *urlString = _settings.documentsFtpRootUrl;
-        FMServer *server = [FMServer serverWithDestination:urlString username:_settings.documentsFtpUName password:_settings.documentsFtpPassword];
+        NSString *urlString = kDocumentsFtpRootUrl;
+        FMServer *server = [FMServer serverWithDestination:urlString username:kDefaultUserFtpUName password:kDefaultUserFtpPswd];
         server.port = 21;
         
         if([_ftpManager checkLogin:server]){
@@ -80,7 +81,7 @@
                         newLocalPath = [NSString stringWithFormat:@"%@/%@/", newLocalPath, fileName];
                         [self creatDirectoryAtPath:newLocalPath];
                         
-                        server = [FMServer serverWithDestination:newUrlString username:_settings.documentsFtpUName password:_settings.documentsFtpPassword];
+                        server = [FMServer serverWithDestination:newUrlString username:kDefaultUserFtpUName password:kDefaultUserFtpPswd];
                         server.port = 21;
                         
                         NSArray *contentsOfNewServer = [[NSArray alloc] initWithArray:[_ftpManager contentsOfServer:server]];
@@ -123,7 +124,7 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        FMServer *newServer = [FMServer serverWithDestination:url username:_settings.documentsFtpUName password:_settings.documentsFtpPassword];
+        FMServer *newServer = [FMServer serverWithDestination:url username:kDefaultUserFtpUName password:kDefaultUserFtpPswd];
         newServer.port = 21;
         BOOL success = [_ftpManager downloadFile:fileName toDirectory:[NSURL URLWithString:destination] fromServer:newServer];
         NSLog(@"downloading success:%@", success?@"YES":@"NO");
@@ -155,8 +156,8 @@
 
 - (void)updateFileNamesAndSize
 {
-    NSString *urlString = _settings.documentsFtpRootUrl;
-    FMServer *server = [FMServer serverWithDestination:urlString username:_settings.documentsFtpUName password:_settings.documentsFtpPassword];
+    NSString *urlString = kDefaultUserFtpServer;
+    FMServer *server = [FMServer serverWithDestination:urlString username:kDefaultUserFtpUName password:kDefaultUserFtpPswd];
     server.port = 21;
     NSInteger number = 0;
     double downLoadSize = 0.0;

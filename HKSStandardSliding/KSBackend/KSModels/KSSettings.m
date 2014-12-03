@@ -30,11 +30,7 @@
         //GUI auf User-Einstellung setzen, wenn keine User-Einstellung vorhanden, Gerätesprache verwenden
         NSString *shortLanguageCode = [[NSLocale preferredLanguages] objectAtIndex:0];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        if([defaults stringForKey:kDefaultsToolLaguageKey]){
-            _toolLanguage = [defaults stringForKey:kDefaultsToolLaguageKey];
-        }
-        else{
-            [self setToolLanguage:shortLanguageCode];
+        
         }
         
         //read rest of settings or set default if nothing was saved
@@ -42,18 +38,7 @@
 }
 
 - (NSDictionary *)currentSettings {
-}
-
-#pragma mark - Localization
-- (NSString*)localizedStringForCurrentQuestionLanguage:(NSString*)key {
-    NSURL *bundleUrl = [[NSBundle mainBundle] URLForResource:[KSSettings sharedSettings].questionLanguage withExtension:@"lproj"];
-    if (bundleUrl == nil) {
-        return NSLocalizedString(key, nil);
-    } else {
-        NSBundle* languageBundle = [NSBundle bundleWithURL:bundleUrl];
-        NSString *string = [languageBundle localizedStringForKey:key value:key table:nil];
-        return string;
-    }
+    return nil;
 }
 
 #pragma mark - Getters/Setters

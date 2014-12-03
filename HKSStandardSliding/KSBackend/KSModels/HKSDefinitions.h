@@ -11,12 +11,13 @@
 #endif
 
 //  Server definitions
-#define kDocumentsFtpSyncId     @"hakesongslidingapp20141203"
-#define kDocumentsFtpRootUrl    [NSString stringWithFormat:@"%@tmp/%@",kDocumentsFtpServer ,kDocumentsFtpSyncId]
+
 
 #define kDefaultUserFtpServer   @"ftp://server2.cvbnm.de/"
 #define kDefaultUserFtpUName    @"kesong"
 #define kDefaultUserFtpPswd     @"hakes0ng"
+#define kDocumentsFtpSyncId     @"hakesongslidingapp20141203"
+#define kDocumentsFtpRootUrl    [NSString stringWithFormat:@"%@tmp/%@",kDefaultUserFtpServer ,kDocumentsFtpSyncId]
 #define kDefaultIdVendor        [[[UIDevice currentDevice] identifierForVendor] UUIDString]
 
 //Local saved path
