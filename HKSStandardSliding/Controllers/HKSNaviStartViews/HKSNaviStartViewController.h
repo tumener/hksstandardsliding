@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KSDownloader.h"
 
-@interface HKSNaviStartViewController : UIViewController
+@interface HKSNaviStartViewController : UIViewController < KSDownloaderDelegate >
 
 @end

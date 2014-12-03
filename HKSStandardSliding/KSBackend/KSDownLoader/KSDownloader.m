@@ -64,7 +64,7 @@
         if([_ftpManager checkLogin:server]){
             NSLog(@"!!\ncheck login Success!\n");
             NSArray *contentsOfServer = [[NSArray alloc] initWithArray:[_ftpManager contentsOfServer:server]];
-            NSString *currentFilePath = kFtpDocumentsPath;
+            NSString *currentFilePath = kSettingsLocalBasePath;
             [self creatDirectoryAtPath:currentFilePath];
             for(int i=0;i<contentsOfServer.count;i++){
                 NSDictionary *resource = [[NSDictionary alloc] initWithDictionary:[contentsOfServer objectAtIndex:i]];
@@ -118,13 +118,13 @@
 
 - (void)startNewDownLoadWithFileName:(NSString*)fileName url:(NSString*)url andDestination:(NSString*)destination
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
+//    dispatch_async(dispatch_get_main_queue(), ^{
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         FMServer *newServer = [FMServer serverWithDestination:url username:kDefaultUserFtpUName password:kDefaultUserFtpPswd];
         newServer.port = 21;
         BOOL success = [_ftpManager downloadFile:fileName toDirectory:[NSURL URLWithString:destination] fromServer:newServer];
         NSLog(@"downloading success:%@", success?@"YES":@"NO");
-    });
+//    });
 }
 
 #pragma -mark class getter
@@ -160,7 +160,7 @@
     if([_ftpManager checkLogin:server]){
         NSLog(@"!!\ncheck login Success!\n");
         NSArray *contentsOfServer = [[NSArray alloc] initWithArray:[_ftpManager contentsOfServer:server]];
-        NSString *currentFilePath = kFtpDocumentsPath;
+        NSString *currentFilePath = kSettingsLocalBasePath;
         [self creatDirectoryAtPath:currentFilePath];
         
         for(int i=0;i<contentsOfServer.count;i++){

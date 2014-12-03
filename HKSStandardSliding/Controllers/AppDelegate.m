@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "KSDownloader.h"
+//#import "KSDownloader.h"
 
 @interface AppDelegate ()
 
@@ -17,9 +17,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    KSDownloader *downloader = [KSDownloader newDownLoader];
-    [downloader checkAndStartDownLoader];
     return YES;
 }
 
