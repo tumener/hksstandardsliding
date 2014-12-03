@@ -10,8 +10,6 @@
 #import <CoreData/CoreData.h>
 #import "Reachability.h"
 
-#define kFtpDocumentsPath                    [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES) objectAtIndex:0] stringByAppendingPathComponent: @"ExDocuments/"]
-
 @interface KSBackend : NSObject
 
 + (instancetype)sharedController;

@@ -48,10 +48,6 @@
     return self;
 }
 
-//- (BOOL)ftpSettingsReady {
-//    return _settings.documentsFtpServer.length>0 && _settings.documentsFtpUName.length>0 && _settings.documentsFtpUName.length>0;
-//}
-
 - (UIAlertView*)alertCheckInternet{
     return [[UIAlertView alloc] initWithTitle:NSLocalizedString(LSCommonError, nil) message:NSLocalizedString(LSCheckInternetMsg, nil) delegate:nil cancelButtonTitle:NSLocalizedString(LSCommonOk, nil) otherButtonTitles:nil, nil];
 }
