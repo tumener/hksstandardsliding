@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>views</key>
+	<array>
+		<dict>
+			<key>title</key>
+			<string></string>
+			<key>id</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>HKSLeftMenue</string>
+			<key>backgroundImage</key>
+			<string>leftmenueviewbg.png</string>
+			<key>rows</key>
+			<array>
+				<dict>
+					<key>title</key>
+					<string>Wir über uns</string>
+					<key>viewsId</key>
+					<integer>10</integer>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>User Team</string>
+					<key>viewsId</key>
+					<integer>11</integer>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>Unsere Leistung</string>
+					<key>viewsId</key>
+					<integer>12</integer>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>Galerie</string>
+					<key>viewsId</key>
+					<integer>13</integer>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>Impresum</string>
+					<key>viewsId</key>
+					<integer>14</integer>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Wir über uns</string>
+			<key>imageName</key>
+			<string>startimage.png</string>
+			<key>description</key>
+			<string>Wir sind zwei Leute mit hoher Motivation Ihre Webseite bzw. App. besser zu machen.</string>
+			<key>imageUrl</key>
+			<string></string>
+			<key>type</key>
+			<string>HKSNaviStartView</string>
+			<key>id</key>
+			<integer>10</integer>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>User Team</string>
+			<key>type</key>
+			<string>HKSNaviTableView</string>
+			<key>id</key>
+			<integer>11</integer>
+			<key>cells</key>
+			<array>
+				<dict>
+					<key>imageName</key>
+					<string>derSchef.png</string>
+					<key>imageUrl</key>
+					<string>http://cvbnm.de</string>
+					<key>identifier</key>
+					<string>HKSProfiImageTitleTableViewCell</string>
+					<key>sortId</key>
+					<integer>0</integer>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Usere Leistung</string>
+			<key>type</key>
+			<string>HKSNaviTableView</string>
+			<key>id</key>
+			<integer>12</integer>
+			<key>cells</key>
+			<array>
+				<dict>
+					<key>imageName</key>
+					<string>webEntwicklung.png</string>
+					<key>title</key>
+					<string>Web Entwcklung</string>
+					<key>identifier</key>
+					<string>HKSImageDescriptionTableViewCell</string>
+					<key>sortId</key>
+					<integer>0</integer>
+				</dict>
+				<dict>
+					<key>imageName</key>
+					<string>appEntwicklung.png</string>
+					<key>title</key>
+					<string>App Entwicklung</string>
+					<key>identifier</key>
+					<string>HKSImageDescriptionTableViewCell</string>
+					<key>sortId</key>
+					<integer>1</integer>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>Administration</string>
+					<key>description</key>
+					<string>Server Administrator Beschreibung bla bla ... ...</string>
+					<key>identifier</key>
+					<string>HKSTitleDescriptionTableViewCell</string>
+					<key>sortId</key>
+					<integer>2</integer>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>Projektmanagment</string>
+					<key>description</key>
+					<string>Beschreibung von Projektmanagment bla bla ... ...</string>
+					<key>identifier</key>
+					<string>HKSTitleDescriptionTableViewCell</string>
+					<key>sortId</key>
+					<integer>3</integer>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Galerie</string>
+			<key>type</key>
+			<string>HKSNaviCollectionView</string>
+			<key>id</key>
+			<integer>13</integer>
+			<key>cells</key>
+			<array>
+				<dict>
+					<key>imageName</key>
+					<string>Herr Schef</string>
+					<key>identifier</key>
+					<string>HKSGaleryCollectionCell</string>
+					<key>sortId</key>
+					<integer>0</integer>
+				</dict>
+				<dict>
+					<key>imageName</key>
+					<string>Herr Muster</string>
+					<key>identifier</key>
+					<string>HKSGaleryCollectionCell</string>
+					<key>sortId</key>
+					<integer>1</integer>
+				</dict>
+				<dict>
+					<key>imageName</key>
+					<string>Herr Muster</string>
+					<key>identifier</key>
+					<string>HKSGaleryCollectionCell</string>
+					<key>sortId</key>
+					<string>2</string>
+				</dict>
+				<dict>
+					<key>imageName</key>
+					<string>Herr Muster</string>
+					<key>identifier</key>
+					<string>HKSGaleryCollectionCell</string>
+					<key>sortId</key>
+					<string>3</string>
+				</dict>
+				<dict>
+					<key>imageName</key>
+					<string>Herr Muster</string>
+					<key>identifier</key>
+					<string>HKSGaleryCollectionCell</string>
+					<key>sortId</key>
+					<string>4</string>
+				</dict>
+				<dict>
+					<key>imageName</key>
+					<string>Herr Muster</string>
+					<key>identifier</key>
+					<string>HKSGaleryCollectionCell</string>
+					<key>sortId</key>
+					<string>5</string>
+				</dict>
+				<dict>
+					<key>imageName</key>
+					<string>Herr Muster</string>
+					<key>identifier</key>
+					<string>HKSGaleryCollectionCell</string>
+					<key>sortId</key>
+					<string>6</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Impresum</string>
+			<key>type</key>
+			<string>HKSWebView</string>
+			<key>id</key>
+			<integer>14</integer>
+			<key>url</key>
+			<string></string>
+		</dict>
+	</array>
+</dict>
+</plist>
