@@ -41,6 +41,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HKSBasicTableViewCell" forIndexPath:indexPath];
+    NSMutableString *tempHex=[[NSMutableString alloc] initWithString:@"0x"];
+    [tempHex appendString:_menueViewSettings[@"textColor"]];
+    unsigned colorInt = 0;
+    [[NSScanner scannerWithString:tempHex] scanHexInt:&colorInt];
+    cell.textLabel.textColor = UIColorFromRGB(colorInt);
     cell.textLabel.text = [_menueViewSettings[@"rows"] objectAtIndex:indexPath.row][@"title"];
     return cell;
 }
