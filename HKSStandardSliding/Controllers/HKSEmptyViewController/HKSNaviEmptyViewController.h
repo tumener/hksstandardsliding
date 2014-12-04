@@ -1,5 +1,5 @@
 //
-//  HKSEmptyViewController.h
+//  HKSNaviEmptyViewController.h
 //  HKSStandardSliding
 //
 //  Created by Ke Song on 03.12.14.
@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface HKSEmptyViewController : UIViewController
-
+@interface HKSNaviEmptyViewController : UIViewController
+@property (nonatomic, strong) NSDictionary *viewSettings;
 @end

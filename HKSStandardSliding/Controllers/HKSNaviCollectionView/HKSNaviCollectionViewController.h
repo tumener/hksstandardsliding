@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+extern NSDictionary *g_dGeneralViewsSettings;
 @interface HKSNaviCollectionViewController : UICollectionViewController
-
+@property (nonatomic, strong) NSDictionary *viewSettings;
 @end

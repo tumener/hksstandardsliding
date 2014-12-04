@@ -3,10 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>slidingAnimation</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>views</key>
 	<array>
 		<dict>
+			<key>textColor</key>
+			<string>ffff0000</string>
 			<key>title</key>
 			<string></string>
 			<key>id</key>
@@ -19,7 +21,7 @@
 			<array>
 				<dict>
 					<key>title</key>
-					<string>Wir über uns</string>
+					<string>Ueber uns</string>
 					<key>viewsId</key>
 					<integer>10</integer>
 				</dict>
@@ -51,7 +53,7 @@
 		</dict>
 		<dict>
 			<key>title</key>
-			<string>Wir über uns</string>
+			<string>Wir ueber uns</string>
 			<key>imageName</key>
 			<string>startimage.png</string>
 			<key>description</key>

@@ -12,5 +12,5 @@
 extern NSDictionary *g_dGeneralViewsSettings;
 
 @interface HKSNaviStartViewController : UIViewController
-
+@property (nonatomic, strong) NSDictionary *viewSettings;
 @end

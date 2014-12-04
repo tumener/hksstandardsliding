@@ -7,7 +7,16 @@
 //
 
 #import "HKSLeftMenueViewController.h"
+#import "UIViewController+ECSlidingViewController.h"
+#import "UIColor+RGBString.h"
 #import "HKSDefinitions.h"
+
+//  viewControllers
+#import "HKSNaviStartViewController.h"
+#import "HKSNaviTableViewController.h"
+#import "HKSNaviCollectionViewController.h"
+#import "HKSNaviWebViewController.h"
+#import "HKSNaviEmptyViewController.h"
 
 @interface HKSLeftMenueViewController ()
 @property (nonatomic, strong) NSDictionary *menueViewSettings;
@@ -38,60 +47,69 @@
     return [_menueViewSettings[@"rows"] count];
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HKSBasicTableViewCell" forIndexPath:indexPath];
-    NSMutableString *tempHex=[[NSMutableString alloc] initWithString:@"0x"];
-    [tempHex appendString:_menueViewSettings[@"textColor"]];
-    unsigned colorInt = 0;
-    [[NSScanner scannerWithString:tempHex] scanHexInt:&colorInt];
-    cell.textLabel.textColor = UIColorFromRGB(colorInt);
+    cell.textLabel.textColor = [UIColor colorFromRGBString:_menueViewSettings[@"textColor"]];
     cell.textLabel.text = [_menueViewSettings[@"rows"] objectAtIndex:indexPath.row][@"title"];
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSNumber *viewsId = [_menueViewSettings[@"rows"] objectAtIndex:indexPath.row][@"viewsId"];
+    NSDictionary *viewsSettings;
+    for(NSDictionary *view in g_dGeneralViewsSettings[@"views"]){
+        if([view[@"id"] isEqualToNumber:viewsId]){
+            viewsSettings = [[NSDictionary alloc] initWithDictionary:view];
+            break;
+        }
+    }
+    NSString *viewsType = viewsSettings[@"type"];
+    self.slidingViewController.topViewController.view.layer.transform = CATransform3DMakeScale(1, 1, 1);
+    
+    if([viewsType isEqualToString:HKSNaviStartView])
+    {
+        UINavigationController *navigationController = (UINavigationController*)[self.storyboard instantiateViewControllerWithIdentifier:HKSNaviStartViewIdentifier];
+        HKSNaviStartViewController *viewController = (HKSNaviStartViewController*)[navigationController.viewControllers objectAtIndex:0];
+        viewController.viewSettings = [[NSDictionary alloc] initWithDictionary:viewsSettings];
+        self.slidingViewController.topViewController = navigationController;
+    }
+    else if([viewsType isEqualToString:HKSNaviTableView])
+    {
+        UINavigationController *navigationController = (UINavigationController*)[self.storyboard instantiateViewControllerWithIdentifier:HKSNaviTableViewIdentifier];
+        HKSNaviTableViewController *viewController = (HKSNaviTableViewController*)[navigationController.viewControllers objectAtIndex:0];
+        self.slidingViewController.topViewController = navigationController;
+        viewController.viewSettings = [[NSDictionary alloc] initWithDictionary:viewsSettings];
+    }
+    else if([viewsType isEqualToString:HKSNaviWebView])
+    {
+        UINavigationController *navigationController = (UINavigationController*)[self.storyboard instantiateViewControllerWithIdentifier:HKSNaviWebViewIdentifier];
+        HKSNaviWebViewController *viewController = (HKSNaviWebViewController*)[navigationController.viewControllers objectAtIndex:0];
+        self.slidingViewController.topViewController = navigationController;
+        viewController.viewSettings = [[NSDictionary alloc] initWithDictionary:viewsSettings];
+    }
+    else if([viewsType isEqualToString:HKSNaviCollectionView])
+    {
+        UINavigationController *navigationController = (UINavigationController*)[self.storyboard instantiateViewControllerWithIdentifier:HKSNaviCollectionViewIdentifier];
+        HKSNaviCollectionViewController *viewController = (HKSNaviCollectionViewController*)[navigationController.viewControllers objectAtIndex:0];
+        self.slidingViewController.topViewController = navigationController;
+        viewController.viewSettings = [[NSDictionary alloc] initWithDictionary:viewsSettings];
+    }
+    else if([viewsType isEqualToString:HKSNaviEmptyView])
+    {
+        UINavigationController *navigationController = (UINavigationController*)[self.storyboard instantiateViewControllerWithIdentifier:HKSNaviEmptyViewIdentifier];
+        HKSNaviEmptyViewController *viewController = (HKSNaviEmptyViewController*)[navigationController.viewControllers objectAtIndex:0];
+        self.slidingViewController.topViewController = navigationController;
+        viewController.viewSettings = [[NSDictionary alloc] initWithDictionary:viewsSettings];
+    }
+    [self.slidingViewController resetTopViewAnimated:YES];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    NSLog(@"%s, identifier:%@", __PRETTY_FUNCTION__, segue.identifier);
 }
-*/
+
 
 @end

@@ -1,27 +1,33 @@
 //
-//  HKSEmptyViewController.m
+//  HKSNaviEmptyViewController.m
 //  HKSStandardSliding
 //
 //  Created by Ke Song on 03.12.14.
 //  Copyright (c) 2014 Ke Song. All rights reserved.
 //
 
-#import "HKSEmptyViewController.h"
+#import "HKSNaviEmptyViewController.h"
+#import "UIViewController+ECSlidingViewController.h"
+#import "MEDynamicTransition.h"
+#import "METransitions.h"
+#import "HKSDefinitions.h"
 
-@interface HKSEmptyViewController ()
+@interface HKSNaviEmptyViewController ()
 
 @end
 
-@implementation HKSEmptyViewController
+@implementation HKSNaviEmptyViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma -mark- actions
+- (IBAction)menuButtonClicked:(id)sender
+{
+    NSLog(@"%s",__PRETTY_FUNCTION__);
+    [self.slidingViewController anchorTopViewToRightAnimated:YES];
 }
 
 /*

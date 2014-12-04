@@ -47,7 +47,7 @@
 #define HKSNaviStartView                                    @"HKSNaviStartView"
 #define HKSNaviCollectionView                               @"HKSNaviCollectionView"
 #define HKSNaviTableView                                    @"HKSNaviTableView"
-#define HKSNaviMapView                                      @"HKSNaviWebView"
+#define HKSNaviWebView                                      @"HKSNaviWebView"
 #define HKSNaviEmptyView                                    @"HKSNaviEmptyView"
 
 

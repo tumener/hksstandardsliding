@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface HKSCollectionViewController : UICollectionViewController
-
+@property (nonatomic, strong) NSDictionary *viewSettings;
 @end

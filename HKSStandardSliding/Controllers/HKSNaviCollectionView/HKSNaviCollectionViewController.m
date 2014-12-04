@@ -7,9 +7,14 @@
 //
 
 #import "HKSNaviCollectionViewController.h"
+#import "UIViewController+ECSlidingViewController.h"
+#import "MEDynamicTransition.h"
+#import "METransitions.h"
+#import "HKSDefinitions.h"
 
 @interface HKSNaviCollectionViewController ()
-
+@property (nonatomic, strong) METransitions *transitions;
+@property (nonatomic, strong) UIPanGestureRecognizer *dynamicTransitionPanGesture;
 @end
 
 @implementation HKSNaviCollectionViewController
@@ -18,33 +23,60 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
-    // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma -mark- actions
+- (IBAction)menuButtonClicked:(id)sender
+{
+    NSLog(@"%s",__PRETTY_FUNCTION__);
+    [self.slidingViewController anchorTopViewToRightAnimated:YES];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma -mark- private functions
+- (void)initSlidingAnimation
+{
+    [self transitions].dynamicTransition.slidingViewController = self.slidingViewController;
+    NSDictionary *transitionData = self.transitions.all[[g_dGeneralViewsSettings[@"slidingAnimation"] intValue]];
+    id<ECSlidingViewControllerDelegate> transition = transitionData[@"transition"];
+    if (transition == (id)[NSNull null]) {
+        self.slidingViewController.delegate = nil;
+    } else {
+        self.slidingViewController.delegate = transition;
+    }
+    NSString *transitionName = transitionData[@"name"];
+    if ([transitionName isEqualToString:METransitionNameDynamic]) {
+        self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGestureCustom;
+        self.slidingViewController.customAnchoredGestures = @[self.dynamicTransitionPanGesture];
+        [self.navigationController.view removeGestureRecognizer:self.slidingViewController.panGesture];
+        [self.navigationController.view addGestureRecognizer:self.dynamicTransitionPanGesture];
+    } else {
+        self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
+        self.slidingViewController.customAnchoredGestures = @[];
+        [self.navigationController.view removeGestureRecognizer:self.dynamicTransitionPanGesture];
+        [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
+    }
 }
-*/
+
+#pragma -mark- GestureRecognizer
+- (UIPanGestureRecognizer *)dynamicTransitionPanGesture
+{
+    if (_dynamicTransitionPanGesture) return _dynamicTransitionPanGesture;
+    _dynamicTransitionPanGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.transitions.dynamicTransition action:@selector(handlePanGesture:)];
+    return _dynamicTransitionPanGesture;
+}
+
+#pragma -mark- transitions extensions
+- (METransitions *)transitions
+{
+    if (_transitions){
+        return _transitions;
+    }
+    _transitions = [[METransitions alloc] init];
+    return _transitions;
+}
 
 #pragma mark <UICollectionViewDataSource>
-
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
 #warning Incomplete method implementation -- Return the number of sections
     return 0;

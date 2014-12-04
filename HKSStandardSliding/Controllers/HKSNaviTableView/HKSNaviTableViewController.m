@@ -7,6 +7,11 @@
 //
 
 #import "HKSNaviTableViewController.h"
+#import "UIViewController+ECSlidingViewController.h"
+#import "MEDynamicTransition.h"
+#import "METransitions.h"
+#import "HKSDefinitions.h"
+
 
 @interface HKSNaviTableViewController ()
 
@@ -16,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    NSLog(@"viewsSettings:%@", _viewSettings);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -24,10 +29,13 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma -mark- actions
+- (IBAction)menuButtonClicked:(id)sender
+{
+    NSLog(@"%s",__PRETTY_FUNCTION__);
+    [self.slidingViewController anchorTopViewToRightAnimated:YES];
 }
+
 
 #pragma mark - Table view data source
 

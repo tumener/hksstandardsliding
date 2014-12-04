@@ -24,11 +24,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _fileManager = [[NSFileManager alloc] init];
-    NSLog(@"sliding animation number:%d",[g_dGeneralViewsSettings[@"slidingAnimation"] intValue]);
+    self.title = self.viewSettings[@"title"];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [self initSlidingAnimation];
+}
+
+- (NSDictionary*)viewSettings{
+    if(!_viewSettings){
+        for(NSDictionary *view in g_dGeneralViewsSettings[@"views"]){
+            if([view[@"type"] isEqualToString:HKSNaviStartView]){
+                _viewSettings = [[NSDictionary alloc] initWithDictionary:view];
+                break;
+            }
+        }
+    }
+    return _viewSettings;
 }
 
 #pragma -mark- actions
@@ -100,9 +112,5 @@
 - (void)dismissProgressHud {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }
-
-
-
-
 
 @end

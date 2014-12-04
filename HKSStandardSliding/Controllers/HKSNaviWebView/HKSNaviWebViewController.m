@@ -7,15 +7,29 @@
 //
 
 #import "HKSNaviWebViewController.h"
+#import "UIViewController+ECSlidingViewController.h"
+#import "MEDynamicTransition.h"
+#import "METransitions.h"
+#import "HKSDefinitions.h"
 
 @implementation HKSNaviWebViewController
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    NSLog(@"viewsSettings:%@", _viewSettings);
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-*/
+
+#pragma -mark- actions
+- (IBAction)menuButtonClicked:(id)sender
+{
+    NSLog(@"%s",__PRETTY_FUNCTION__);
+    [self.slidingViewController anchorTopViewToRightAnimated:YES];
+}
+
 
 @end
