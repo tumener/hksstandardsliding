@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+extern NSDictionary *g_dGeneralViewsSettings;
 
-@interface HKSLeftMenueViewController : UITableViewController
-
+@interface HKSLeftMenueViewController : UIViewController < UITableViewDataSource, UITableViewDelegate >
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UIImageView *imageView;
 @end

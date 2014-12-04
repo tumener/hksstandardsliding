@@ -42,4 +42,13 @@
 #define HKSCollectionViewIdentifier                         @"HKSCollectionViewController"
 #define HKSWebViewIdentifier                                @"HKSWebViewController"
 
+// views Type
+#define HKSNaviLeftMenueView                                @"HKSLeftMenue"
+#define HKSNaviStartView                                    @"HKSNaviStartView"
+#define HKSNaviCollectionView                               @"HKSNaviCollectionView"
+#define HKSNaviTableView                                    @"HKSNaviTableView"
+#define HKSNaviMapView                                      @"HKSNaviWebView"
+#define HKSNaviEmptyView                                    @"HKSNaviEmptyView"
+
+
 

@@ -7,14 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KSDownloader.h"
 #import "HKSDefinitions.h"
 
 NSDictionary *g_dGeneralViewsSettings;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
+@interface AppDelegate : UIResponder <UIApplicationDelegate, KSDownloaderDelegate>
 @property (strong, nonatomic) UIWindow *window;
-
 
 @end
 

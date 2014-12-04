@@ -7,14 +7,12 @@
 //
 
 #import "AppDelegate.h"
-#import "KSDownloader.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) NSFileManager *fileManager;
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[KSDownloader newDownLoader] checkAndStartDownLoader];
@@ -42,25 +40,18 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
 }
 
-//#pragma -mark- HUD
-//- (void)showProgressHudWithLabel:(NSString*)label{
-//    MBProgressHUD *hud = [MBProgressHUD HUDForView:self.view];
-//    if (!hud) {
-//        hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//        hud.mode = MBProgressHUDModeAnnularDeterminate;
-//        hud.removeFromSuperViewOnHide = YES;
-//        hud.labelText = label;
-//        hud.mode = MBProgressHUDModeIndeterminate;
-//        [hud addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(progressHudTapped:)]];
-//    }
-//    hud.labelText = label;
-//}
-//- (void)progressHudTapped:(UITapGestureRecognizer*)recognizer{
-//    [self dismissProgressHud];
-//}
-//- (void)dismissProgressHud {
-//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//}
+#pragma -mark- KSDownloaderDelegate
+- (void)KSDownloader:(KSDownloader*)downloader progressDidChange:(NSDictionary *)processInfo
+{
+    double progress = [processInfo[@"progress"] doubleValue];
+    int progress100 = 100*progress;
+    if(progress<1.0 && progress100%20==1){
+        NSLog(@"%s info:%@, %@", __PRETTY_FUNCTION__, processInfo.allKeys, processInfo.allValues);
+    }
+    if(progress==1.0){
+        NSLog(@"did finisch with downloading");
+    }
+}
 
 
 @end

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>slidingAnimation</key>
-	<integer>2</integer>
+	<integer>1</integer>
 	<key>views</key>
 	<array>
 		<dict>
