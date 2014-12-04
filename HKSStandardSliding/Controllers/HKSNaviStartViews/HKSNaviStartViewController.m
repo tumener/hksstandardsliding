@@ -7,12 +7,14 @@
 //
 
 #import "HKSNaviStartViewController.h"
+#import "UIViewController+ECSlidingViewController.h"
+#import "MEDynamicTransition.h"
+#import "METransitions.h"
 #import "HKSDefinitions.h"
 #import "MBProgressHUD.h"
 
 @interface HKSNaviStartViewController ()
 @property (nonatomic, strong) NSFileManager *fileManager;
-@property (nonatomic, strong) NSDictionary *currentViewsSettings;
 @end
 
 @implementation HKSNaviStartViewController
@@ -20,19 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _fileManager = [[NSFileManager alloc] init];
-    KSDownloader *downloader = [KSDownloader newDownLoader];
-    [self showProgressHudWithLabel:@"downloading ... "];
-    //    dispatch_async(dispatch_get_main_queue(), ^{
-        [downloader checkAndStartDownLoader];
-//    });
-    [self dismissProgressHud];
-    
-    if([_fileManager fileExistsAtPath:kSettingsLocalFilePath]){
-        _currentViewsSettings = [[NSDictionary alloc] initWithContentsOfFile:kSettingsLocalFilePath];
-    }else{
-        _currentViewsSettings = [[NSDictionary alloc] initWithContentsOfFile:kDefaultSettingsFilePath];
-    }
-    NSLog(@"sliding animation number:%d",[_currentViewsSettings[@"slidingAnimation"] intValue]);
+    NSLog(@"sliding animation number:%d",[g_dGeneralViewsSettings[@"slidingAnimation"] intValue]);
 }
 
 

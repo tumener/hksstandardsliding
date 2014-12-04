@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "KSDownloader.h"
+extern NSDictionary *g_dGeneralViewsSettings;
 
 @interface HKSNaviStartViewController : UIViewController < KSDownloaderDelegate >
 

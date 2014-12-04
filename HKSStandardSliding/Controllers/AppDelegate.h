@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "HKSDefinitions.h"
 
+NSDictionary *g_dGeneralViewsSettings;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
