@@ -25,13 +25,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _fileManager = [[NSFileManager alloc] init];
-    
+    [self initSlidingAnimation];
     self.title = self.viewSettings[@"title"];
     NSString *startImagePath = [kSettingsImagePath stringByAppendingPathComponent:_viewSettings[@"imageName"]];
     NSLog(@"imagePath:%@", startImagePath);
     self.startImage.image = [UIImage imageWithContentsOfFile:startImagePath];
+    
     self.descriptionLabel.text = _viewSettings[@"description"];
-    [self initSlidingAnimation];
+    self.descriptionHeight.constant = [self descriptionHeighWithText:_viewSettings[@"description"]]+10;
 }
 
 - (NSDictionary*)viewSettings{
@@ -44,6 +45,16 @@
         }
     }
     return _viewSettings;
+}
+
+#pragma -mark- private functions
+- (CGFloat)descriptionHeighWithText:(NSString*)text
+{
+    CGFloat height = [text
+                      boundingRectWithSize:CGSizeMake(self.view.bounds.size.width-20, 220)
+                      options:NSStringDrawingUsesLineFragmentOrigin
+                      attributes:@{ NSFontAttributeName:[UIFont systemFontOfSize:17] }context:nil].size.height;
+    return height;
 }
 
 #pragma -mark- actions

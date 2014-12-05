@@ -16,7 +16,9 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[KSDownloader newDownLoader] checkAndStartDownLoader];
+    KSDownloader *downloader = [KSDownloader newDownLoader];
+    [downloader updateFileNamesAndSize];
+    [downloader checkAndStartDownLoader];
     _fileManager = [[NSFileManager alloc] init];
     if([_fileManager fileExistsAtPath:kSettingsLocalFilePath]){
         g_dGeneralViewsSettings = [[NSDictionary alloc] initWithContentsOfFile:kSettingsLocalFilePath];

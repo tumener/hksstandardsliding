@@ -31,6 +31,7 @@ typedef enum{
 @property (nonatomic, assign) NSInteger fileNumber;
 
 + (instancetype)newDownLoader;
+- (void)updateFileNamesAndSize;
 - (void)checkAndStartDownLoader;
 - (void)startNewDownLoadWithFileName:(NSString*)fileName url:(NSString*)url andDestination:(NSString*)destination;
 

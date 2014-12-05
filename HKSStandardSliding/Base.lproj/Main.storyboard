@@ -99,8 +99,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="descriptionHeight" destination="O6w-Oj-ESM" id="fJ8-5D-WNI"/>
                         <outlet property="descriptionLabel" destination="0gO-Gc-9du" id="jzv-k1-kRi"/>
-                        <outlet property="descriptionWidth" destination="O6w-Oj-ESM" id="JsM-Eu-UBI"/>
                         <outlet property="startImage" destination="dtn-3S-7fJ" id="uYG-B4-Crz"/>
                     </connections>
                 </viewController>

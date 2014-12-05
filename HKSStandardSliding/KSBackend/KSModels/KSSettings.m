@@ -8,12 +8,12 @@
 
 #import "KSSettings.h"
 
-
+@interface KSSettings()
+@property (nonatomic, strong) NSUserDefaults *defaults;
+@end
 
 @implementation KSSettings
-
-
-
+@synthesize lastUpdateDate = _lastUpdateDate;
 
 + (instancetype) sharedSettings{
     static KSSettings *sharedInstance = nil;
@@ -27,14 +27,10 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        //GUI auf User-Einstellung setzen, wenn keine User-Einstellung vorhanden, Gerätesprache verwenden
-        NSString *shortLanguageCode = [[NSLocale preferredLanguages] objectAtIndex:0];
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
-        }
-        
-        //read rest of settings or set default if nothing was saved
-            return self;
+        _defaults = [NSUserDefaults standardUserDefaults];
+        _lastUpdateDate = [_defaults objectForKey:HKSLastUpdateDateKey]?[_defaults objectForKey:HKSLastUpdateDateKey]:HKSReferenceDate;
+    }
+    return self;
 }
 
 - (NSDictionary *)currentSettings {
@@ -42,6 +38,25 @@
 }
 
 #pragma mark - Getters/Setters
+- (void)setLastUpdateDate:(NSDate *)lastUpdateDate{
+    _lastUpdateDate = lastUpdateDate;
+    [_defaults setObject:lastUpdateDate forKey:HKSLastUpdateDateKey];
+    [_defaults synchronize];
+}
+- (NSDate*)lastUpdateDate{
+    return _lastUpdateDate;
+}
 
+- (NSDate*)lastModifiedForDocument:(NSString*)document{
+    if(![_defaults objectForKey:[document stringByAppendingString:HKSLastModifieldPadding]]){
+        [_defaults setObject:HKSReferenceDate forKey:[document stringByAppendingString:HKSLastModifieldPadding]];
+        [_defaults synchronize];
+    }
+    return [_defaults objectForKey:[document stringByAppendingString:HKSLastModifieldPadding]];
+}
+- (void)setLastModifiedDate:(NSDate*)date forDocument:(NSString*)fileName{
+    [_defaults setObject:date forKey:[fileName stringByAppendingString:HKSLastModifieldPadding]];
+    [_defaults synchronize];
+}
 
 @end
