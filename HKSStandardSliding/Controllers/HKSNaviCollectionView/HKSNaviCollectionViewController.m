@@ -24,6 +24,7 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"%s, viewsSettings:%@",__PRETTY_FUNCTION__, _viewSettings);
+    self.title = self.viewSettings[@"title"];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
 }
 

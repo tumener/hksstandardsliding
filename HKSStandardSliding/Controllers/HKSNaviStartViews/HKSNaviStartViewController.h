@@ -12,5 +12,8 @@
 extern NSDictionary *g_dGeneralViewsSettings;
 
 @interface HKSNaviStartViewController : UIViewController
+@property (nonatomic, strong) IBOutlet UIImageView *startImage;
+@property (nonatomic, strong) IBOutlet UILabel *descriptionLabel;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *descriptionWidth;
 @property (nonatomic, strong) NSDictionary *viewSettings;
 @end

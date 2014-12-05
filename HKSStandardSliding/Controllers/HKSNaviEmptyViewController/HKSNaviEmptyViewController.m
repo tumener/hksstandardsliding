@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"%s, viewsSettings:%@",__PRETTY_FUNCTION__, _viewSettings);
+    self.title = self.viewSettings[@"title"];
 }
 
 #pragma -mark- actions

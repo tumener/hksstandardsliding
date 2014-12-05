@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"%s, viewsSettings:%@",__PRETTY_FUNCTION__, _viewSettings);
+    self.title = self.viewSettings[@"title"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

@@ -26,36 +26,11 @@
     [super viewDidLoad];
     _fileManager = [[NSFileManager alloc] init];
     self.title = self.viewSettings[@"title"];
+    NSString *startImagePath = [kSettingsImagePath stringByAppendingPathComponent:_viewSettings[@"imageName"]];
+    NSLog(@"imagePath:%@", startImagePath);
+    self.startImage.image = [UIImage imageWithContentsOfFile:startImagePath];
+    self.descriptionLabel.text = _viewSettings[@"description"];
     
-    /*
-    if([g_dGeneralViewsSettings[@"naviBarBackground"] length]>0){
-        self.navigationController.navigationBar.barTintColor = [UIColor colorFromRGBString:g_dGeneralViewsSettings[@"naviBarBackground"]];
-    }
-    if([g_dGeneralViewsSettings[@"naviBarTint"] length]>0){
-        self.navigationItem.leftBarButtonItem.tintColor = [UIColor colorFromRGBString:g_dGeneralViewsSettings[@"naviBarTint"]];
-    }
-    if([g_dGeneralViewsSettings[@"naviTitleColor"] length]>0){
-        NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                   [UIColor colorFromRGBString:g_dGeneralViewsSettings[@"naviTitleColor"]],
-                                                   NSForegroundColorAttributeName,
-                                                   [UIFont boldSystemFontOfSize:22],
-                                                   NSFontAttributeName,
-                                                   nil];
-        [self.navigationController.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
-    }
-    */
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [self initSlidingAnimation];
-    
-//    UINavigationController *navigationController = (UINavigationController*)[self.storyboard instantiateViewControllerWithIdentifier:HKSNaviStartViewIdentifier];
-//    if([g_dGeneralViewsSettings[@"naviBarTint"] length]>0){
-//        navigationController.navigationBar.barTintColor = [UIColor colorFromRGBString:g_dGeneralViewsSettings[@"naviBarTint"]];
-//    }
-//    navigationController.navigationBar.backgroundColor = [UIColor blackColor];
-    
-//    self.navigationController.navigationBar.backgroundColor = [UIColor blackColor];
 }
 
 - (NSDictionary*)viewSettings{

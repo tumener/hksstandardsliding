@@ -23,7 +23,6 @@
     }else{
         g_dGeneralViewsSettings = [[NSDictionary alloc] initWithContentsOfFile:kDefaultSettingsFilePath];
     }
-    [[UINavigationBar appearance] setTranslucent:NO];
     if([g_dGeneralViewsSettings[@"naviBarBackground"] length]>0){
         [[UINavigationBar appearance] setBarTintColor:[UIColor colorFromRGBString:g_dGeneralViewsSettings[@"naviBarBackground"]]];
     }
@@ -34,7 +33,7 @@
         NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                                    [UIColor colorFromRGBString:g_dGeneralViewsSettings[@"naviTitleColor"]],
                                                    NSForegroundColorAttributeName,
-                                                   [UIFont boldSystemFontOfSize:22],
+                                                   [UIFont systemFontOfSize:22],
                                                    NSFontAttributeName,
                                                    nil];
         [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
