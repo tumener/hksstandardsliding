@@ -25,12 +25,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _fileManager = [[NSFileManager alloc] init];
+    
     self.title = self.viewSettings[@"title"];
     NSString *startImagePath = [kSettingsImagePath stringByAppendingPathComponent:_viewSettings[@"imageName"]];
     NSLog(@"imagePath:%@", startImagePath);
     self.startImage.image = [UIImage imageWithContentsOfFile:startImagePath];
     self.descriptionLabel.text = _viewSettings[@"description"];
-    
+    [self initSlidingAnimation];
 }
 
 - (NSDictionary*)viewSettings{
@@ -69,7 +70,7 @@
         self.slidingViewController.customAnchoredGestures = @[self.dynamicTransitionPanGesture];
         [self.navigationController.view removeGestureRecognizer:self.slidingViewController.panGesture];
         [self.navigationController.view addGestureRecognizer:self.dynamicTransitionPanGesture];
-    } else {
+    } else if(![transitionName isEqualToString:METransitionNameZoom]) {
         self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
         self.slidingViewController.customAnchoredGestures = @[];
         [self.navigationController.view removeGestureRecognizer:self.dynamicTransitionPanGesture];
