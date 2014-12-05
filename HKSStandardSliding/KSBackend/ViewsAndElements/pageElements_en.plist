@@ -3,7 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>slidingAnimation</key>
-	<integer>1</integer>
+	<integer>2</integer>
+	<key>naviBarBackground</key>
+	<string>0xff5c5c5c</string>
+	<key>naviBarTint</key>
+	<string>0xffffff00</string>
+	<key>naviTitleColor</key>
+	<string>0xff005aff</string>
 	<key>views</key>
 	<array>
 		<dict>
@@ -69,7 +75,7 @@
 			<key>title</key>
 			<string>User Team</string>
 			<key>type</key>
-			<string>HKSNaviTableView</string>
+			<string>HKSNaviEmptyView</string>
 			<key>id</key>
 			<integer>11</integer>
 			<key>cells</key>
@@ -208,7 +214,7 @@
 			<key>title</key>
 			<string>Impresum</string>
 			<key>type</key>
-			<string>HKSWebView</string>
+			<string>HKSNaviWebView</string>
 			<key>id</key>
 			<integer>14</integer>
 			<key>url</key>

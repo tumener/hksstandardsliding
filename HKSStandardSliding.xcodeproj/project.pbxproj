@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1900E1E51A2F051500E39A02 /* HKSNaviEmptyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1900E1E41A2F051500E39A02 /* HKSNaviEmptyViewController.m */; };
 		1900E1EA1A2F10C300E39A02 /* pageElements_de.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1900E1E71A2F10C300E39A02 /* pageElements_de.plist */; };
 		1900E1EB1A2F10C300E39A02 /* pageElements_en.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1900E1E81A2F10C300E39A02 /* pageElements_en.plist */; };
 		1900E1EC1A2F10C300E39A02 /* pageElements_zh-Hans.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1900E1E91A2F10C300E39A02 /* pageElements_zh-Hans.plist */; };
@@ -46,6 +45,7 @@
 		196CB5FB1A2DF8210072B41A /* KSSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 196CB5F81A2DF8210072B41A /* KSSettings.m */; };
 		196CB5FF1A2DF89D0072B41A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 196CB5FE1A2DF89D0072B41A /* AppDelegate.m */; };
 		19A7CE241A30A1E200F0EB42 /* UIColor+RGBString.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A7CE231A30A1E200F0EB42 /* UIColor+RGBString.m */; };
+		19CDD32A1A319B8F006469E5 /* HKSNaviEmptyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CDD3291A319B8F006469E5 /* HKSNaviEmptyViewController.m */; };
 		3C6BE80CC40AE483DA766F37 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D7BAFC533ECA2959DD986EE2 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -60,8 +60,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1900E1E31A2F051500E39A02 /* HKSNaviEmptyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKSNaviEmptyViewController.h; sourceTree = "<group>"; };
-		1900E1E41A2F051500E39A02 /* HKSNaviEmptyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKSNaviEmptyViewController.m; sourceTree = "<group>"; };
 		1900E1E71A2F10C300E39A02 /* pageElements_de.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = pageElements_de.plist; sourceTree = "<group>"; };
 		1900E1E81A2F10C300E39A02 /* pageElements_en.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = pageElements_en.plist; sourceTree = "<group>"; };
 		1900E1E91A2F10C300E39A02 /* pageElements_zh-Hans.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "pageElements_zh-Hans.plist"; sourceTree = "<group>"; };
@@ -135,6 +133,8 @@
 		196CB5FE1A2DF89D0072B41A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		19A7CE221A30A1E200F0EB42 /* UIColor+RGBString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+RGBString.h"; sourceTree = "<group>"; };
 		19A7CE231A30A1E200F0EB42 /* UIColor+RGBString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RGBString.m"; sourceTree = "<group>"; };
+		19CDD3281A319B8F006469E5 /* HKSNaviEmptyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKSNaviEmptyViewController.h; sourceTree = "<group>"; };
+		19CDD3291A319B8F006469E5 /* HKSNaviEmptyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKSNaviEmptyViewController.m; sourceTree = "<group>"; };
 		3F409C27DF98083F53BC0AE3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B58460510999D1FD134EE1C4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D7BAFC533ECA2959DD986EE2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,15 +160,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1900E1E21A2F04FE00E39A02 /* HKSEmptyViewController */ = {
-			isa = PBXGroup;
-			children = (
-				1900E1E31A2F051500E39A02 /* HKSNaviEmptyViewController.h */,
-				1900E1E41A2F051500E39A02 /* HKSNaviEmptyViewController.m */,
-			);
-			path = HKSEmptyViewController;
-			sourceTree = "<group>";
-		};
 		1900E1E61A2F10C300E39A02 /* ViewsAndElements */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,17 +420,26 @@
 				196CB5FD1A2DF89D0072B41A /* AppDelegate.h */,
 				196CB5FE1A2DF89D0072B41A /* AppDelegate.m */,
 				19212DD31A2E7321003D4F8F /* HKSViewController */,
-				19212DB11A2E6948003D4F8F /* HKSCollectionView */,
 				19212DB21A2E6948003D4F8F /* HKSLeftMenueView */,
 				19212DB31A2E6948003D4F8F /* HKSNaviCollectionView */,
 				19212DB41A2E6948003D4F8F /* HKSNaviStartViews */,
 				19212DB51A2E6948003D4F8F /* HKSNaviTableView */,
+				19CDD3271A319B8F006469E5 /* HKSNaviEmptyViewController */,
 				19212DB61A2E6948003D4F8F /* HKSNaviWebView */,
 				19212DB71A2E6948003D4F8F /* HKSTableView */,
+				19212DB11A2E6948003D4F8F /* HKSCollectionView */,
 				19212DB81A2E6948003D4F8F /* HKSWebView */,
-				1900E1E21A2F04FE00E39A02 /* HKSEmptyViewController */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		19CDD3271A319B8F006469E5 /* HKSNaviEmptyViewController */ = {
+			isa = PBXGroup;
+			children = (
+				19CDD3281A319B8F006469E5 /* HKSNaviEmptyViewController.h */,
+				19CDD3291A319B8F006469E5 /* HKSNaviEmptyViewController.m */,
+			);
+			path = HKSNaviEmptyViewController;
 			sourceTree = "<group>";
 		};
 		28FE4E48FDF572DD2048CFD1 /* Frameworks */ = {
@@ -605,9 +605,9 @@
 				19212D9C1A2DFBE8003D4F8F /* METransitions.m in Sources */,
 				19212D9E1A2DFBE8003D4F8F /* NSDate+GMTString.m in Sources */,
 				19212DA81A2DFBE8003D4F8F /* UILabelWithInset.m in Sources */,
-				1900E1E51A2F051500E39A02 /* HKSNaviEmptyViewController.m in Sources */,
 				19212DA21A2DFBE8003D4F8F /* MyView.m in Sources */,
 				19212DD61A2E733B003D4F8F /* HKSViewController.m in Sources */,
+				19CDD32A1A319B8F006469E5 /* HKSNaviEmptyViewController.m in Sources */,
 				196CB5FB1A2DF8210072B41A /* KSSettings.m in Sources */,
 				19212D9A1A2DFBE8003D4F8F /* MEDynamicTransition.m in Sources */,
 				196CB5F91A2DF8210072B41A /* KSDownloader.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "UIColor+RGBString.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) NSFileManager *fileManager;
@@ -22,6 +23,23 @@
     }else{
         g_dGeneralViewsSettings = [[NSDictionary alloc] initWithContentsOfFile:kDefaultSettingsFilePath];
     }
+    [[UINavigationBar appearance] setTranslucent:NO];
+    if([g_dGeneralViewsSettings[@"naviBarBackground"] length]>0){
+        [[UINavigationBar appearance] setBarTintColor:[UIColor colorFromRGBString:g_dGeneralViewsSettings[@"naviBarBackground"]]];
+    }
+    if([g_dGeneralViewsSettings[@"naviBarTint"] length]>0){
+        [[UIBarButtonItem appearance] setTintColor:[UIColor colorFromRGBString:g_dGeneralViewsSettings[@"naviBarTint"]]];
+    }
+    if([g_dGeneralViewsSettings[@"naviTitleColor"] length]>0){
+        NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                   [UIColor colorFromRGBString:g_dGeneralViewsSettings[@"naviTitleColor"]],
+                                                   NSForegroundColorAttributeName,
+                                                   [UIFont boldSystemFontOfSize:22],
+                                                   NSFontAttributeName,
+                                                   nil];
+        [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
+    }
+    
     return YES;
 }
 

@@ -29,8 +29,6 @@
 #define kSettingsLocalFilePath      [kSettingsSettingsPath stringByAppendingFormat:@"/pageElements_%@.plist",kShortLanguageCode]
 #define kDefaultSettingsFilePath    [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"pageElements_%@", kShortLanguageCode] ofType:@"plist"]
 
-
-
 #define HKSNaviLeftMenueIdentifier                          @"HKSLeftMenueViewNavigationController"
 #define HKSNaviStartViewIdentifier                          @"HKSStartNavigationController"
 #define HKSNaviTableViewIdentifier                          @"HKSTableViewNavigationController"

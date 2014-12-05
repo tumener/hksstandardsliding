@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"viewsSettings:%@", _viewSettings);
+    NSLog(@"%s, viewsSettings:%@",__PRETTY_FUNCTION__, _viewSettings);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -32,7 +32,6 @@
 #pragma -mark- actions
 - (IBAction)menuButtonClicked:(id)sender
 {
-    NSLog(@"%s",__PRETTY_FUNCTION__);
     [self.slidingViewController anchorTopViewToRightAnimated:YES];
 }
 

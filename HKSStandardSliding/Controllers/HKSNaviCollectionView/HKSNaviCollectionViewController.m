@@ -23,17 +23,18 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"%s, viewsSettings:%@",__PRETTY_FUNCTION__, _viewSettings);
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
 }
 
 #pragma -mark- actions
 - (IBAction)menuButtonClicked:(id)sender
 {
-    NSLog(@"%s",__PRETTY_FUNCTION__);
     [self.slidingViewController anchorTopViewToRightAnimated:YES];
 }
 
 #pragma -mark- private functions
+/*
 - (void)initSlidingAnimation
 {
     [self transitions].dynamicTransition.slidingViewController = self.slidingViewController;
@@ -75,6 +76,7 @@ static NSString * const reuseIdentifier = @"Cell";
     _transitions = [[METransitions alloc] init];
     return _transitions;
 }
+*/
 
 #pragma mark <UICollectionViewDataSource>
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {

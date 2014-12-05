@@ -20,13 +20,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    NSLog(@"%s, viewsSettings:%@",__PRETTY_FUNCTION__, _viewSettings);
 }
 
 #pragma -mark- actions
 - (IBAction)menuButtonClicked:(id)sender
 {
-    NSLog(@"%s",__PRETTY_FUNCTION__);
     [self.slidingViewController anchorTopViewToRightAnimated:YES];
 }
 

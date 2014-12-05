@@ -16,18 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"viewsSettings:%@", _viewSettings);
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSLog(@"%s, viewsSettings:%@",__PRETTY_FUNCTION__, _viewSettings);
 }
 
 #pragma -mark- actions
 - (IBAction)menuButtonClicked:(id)sender
 {
-    NSLog(@"%s",__PRETTY_FUNCTION__);
     [self.slidingViewController anchorTopViewToRightAnimated:YES];
 }
 
