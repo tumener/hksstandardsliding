@@ -35,6 +35,9 @@
 		19212DCF1A2E7286003D4F8F /* HKSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19212DCE1A2E7286003D4F8F /* HKSTableViewController.m */; };
 		19212DD21A2E72A5003D4F8F /* HKSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19212DD11A2E72A5003D4F8F /* HKSWebViewController.m */; };
 		19212DD61A2E733B003D4F8F /* HKSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19212DD51A2E733B003D4F8F /* HKSViewController.m */; };
+		195BA8CF1A339FEF00C3D263 /* HKSBasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 195BA8CE1A339FEF00C3D263 /* HKSBasicTableViewCell.m */; };
+		195BA8D21A33A09B00C3D263 /* HKSImageLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 195BA8D11A33A09B00C3D263 /* HKSImageLabelTableViewCell.m */; };
+		195BA8D51A33A0CE00C3D263 /* HKSImageTitleLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 195BA8D41A33A0CE00C3D263 /* HKSImageTitleLabelTableViewCell.m */; };
 		196CB5CC1A2DF2320072B41A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 196CB5CB1A2DF2320072B41A /* main.m */; };
 		196CB5D51A2DF2320072B41A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 196CB5D31A2DF2320072B41A /* Main.storyboard */; };
 		196CB5D71A2DF2320072B41A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 196CB5D61A2DF2320072B41A /* Images.xcassets */; };
@@ -113,6 +116,12 @@
 		19212DD11A2E72A5003D4F8F /* HKSWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKSWebViewController.m; sourceTree = "<group>"; };
 		19212DD41A2E733B003D4F8F /* HKSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKSViewController.h; sourceTree = "<group>"; };
 		19212DD51A2E733B003D4F8F /* HKSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKSViewController.m; sourceTree = "<group>"; };
+		195BA8CD1A339FEF00C3D263 /* HKSBasicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKSBasicTableViewCell.h; sourceTree = "<group>"; };
+		195BA8CE1A339FEF00C3D263 /* HKSBasicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKSBasicTableViewCell.m; sourceTree = "<group>"; };
+		195BA8D01A33A09B00C3D263 /* HKSImageLabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKSImageLabelTableViewCell.h; sourceTree = "<group>"; };
+		195BA8D11A33A09B00C3D263 /* HKSImageLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKSImageLabelTableViewCell.m; sourceTree = "<group>"; };
+		195BA8D31A33A0CE00C3D263 /* HKSImageTitleLabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKSImageTitleLabelTableViewCell.h; sourceTree = "<group>"; };
+		195BA8D41A33A0CE00C3D263 /* HKSImageTitleLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKSImageTitleLabelTableViewCell.m; sourceTree = "<group>"; };
 		196CB5C61A2DF2320072B41A /* HKSStandardSliding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HKSStandardSliding.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		196CB5CA1A2DF2320072B41A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		196CB5CB1A2DF2320072B41A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -279,6 +288,7 @@
 		19212DB51A2E6948003D4F8F /* HKSNaviTableView */ = {
 			isa = PBXGroup;
 			children = (
+				195BA8CC1A339F3100C3D263 /* CustomerCells */,
 				19212DC71A2E724F003D4F8F /* HKSNaviTableViewController.h */,
 				19212DC81A2E724F003D4F8F /* HKSNaviTableViewController.m */,
 			);
@@ -319,6 +329,19 @@
 				19212DD51A2E733B003D4F8F /* HKSViewController.m */,
 			);
 			path = HKSViewController;
+			sourceTree = "<group>";
+		};
+		195BA8CC1A339F3100C3D263 /* CustomerCells */ = {
+			isa = PBXGroup;
+			children = (
+				195BA8CD1A339FEF00C3D263 /* HKSBasicTableViewCell.h */,
+				195BA8CE1A339FEF00C3D263 /* HKSBasicTableViewCell.m */,
+				195BA8D01A33A09B00C3D263 /* HKSImageLabelTableViewCell.h */,
+				195BA8D11A33A09B00C3D263 /* HKSImageLabelTableViewCell.m */,
+				195BA8D31A33A0CE00C3D263 /* HKSImageTitleLabelTableViewCell.h */,
+				195BA8D41A33A0CE00C3D263 /* HKSImageTitleLabelTableViewCell.m */,
+			);
+			path = CustomerCells;
 			sourceTree = "<group>";
 		};
 		196CB5BD1A2DF2320072B41A = {
@@ -598,6 +621,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				195BA8D51A33A0CE00C3D263 /* HKSImageTitleLabelTableViewCell.m in Sources */,
 				19212DCC1A2E726E003D4F8F /* HKSNaviWebViewController.m in Sources */,
 				19212DC61A2E7237003D4F8F /* HKSNaviStartViewController.m in Sources */,
 				19212DCF1A2E7286003D4F8F /* HKSTableViewController.m in Sources */,
@@ -626,7 +650,9 @@
 				19212D9D1A2DFBE8003D4F8F /* MEZoomAnimationController.m in Sources */,
 				19212DA61A2DFBE8003D4F8F /* UIAlertView+Blocks.m in Sources */,
 				19212DD21A2E72A5003D4F8F /* HKSWebViewController.m in Sources */,
+				195BA8D21A33A09B00C3D263 /* HKSImageLabelTableViewCell.m in Sources */,
 				19212D9F1A2DFBE8003D4F8F /* NSString+GMTDate.m in Sources */,
+				195BA8CF1A339FEF00C3D263 /* HKSBasicTableViewCell.m in Sources */,
 				196CB5FF1A2DF89D0072B41A /* AppDelegate.m in Sources */,
 				19212DC01A2E71F0003D4F8F /* HKSLeftMenueViewController.m in Sources */,
 			);

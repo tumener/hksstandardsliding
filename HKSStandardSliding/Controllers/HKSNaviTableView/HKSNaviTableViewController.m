@@ -11,7 +11,9 @@
 #import "MEDynamicTransition.h"
 #import "METransitions.h"
 #import "HKSDefinitions.h"
-
+#import "HKSBasicTableViewCell.h"
+#import "HKSImageLabelTableViewCell.h"
+#import "HKSImageTitleLabelTableViewCell.h"
 
 @interface HKSNaviTableViewController ()
 
@@ -36,30 +38,46 @@
     [self.slidingViewController anchorTopViewToRightAnimated:YES];
 }
 
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [_viewSettings[@"cells"] count];
 }
 
-/*
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if()
+//}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    NSDictionary *cellSettings = (NSDictionary*)[_viewSettings[@"cells"] objectAtIndex:indexPath.row];
+    UITableViewCell *cell;
+    NSString *title = cellSettings[@"title"];
+    if([cellSettings[@"identifier"] isEqualToString:HKSBasicTableViewCellId]){
+        HKSBasicTableViewCell *basicCell = [tableView dequeueReusableCellWithIdentifier:HKSBasicTableViewCellId forIndexPath:indexPath];
+        basicCell.title.text = title;
+        cell = basicCell;
+    }
+    else if ([cellSettings[@"identifier"] isEqualToString:HKSImageLabelTableViewCellId]){
+        HKSImageTitleLabelTableViewCell *imageLabelCell = [tableView dequeueReusableCellWithIdentifier:HKSImageLabelTableViewCellId forIndexPath:indexPath];
+        imageLabelCell.imageView.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",kSettingsImagePath, cellSettings[@"imageName"]]];
+        imageLabelCell.title.text = title;
+        cell = imageLabelCell;
+    }
+    else if ([cellSettings[@"identifier"] isEqualToString:HKSImageTitleLabelTableViewCellId]){
+        HKSImageTitleLabelTableViewCell *imageTitleLabelCell = [tableView dequeueReusableCellWithIdentifier:HKSImageTitleLabelTableViewCellId forIndexPath:indexPath];
+        imageTitleLabelCell.title.text = title;
+        imageTitleLabelCell.imageView.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",kSettingsImagePath, cellSettings[@"imageName"]]];
+        imageTitleLabelCell.detailTextLabel.text = cellSettings[@"description"];
+        cell = imageTitleLabelCell;
+    }
     
     return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.

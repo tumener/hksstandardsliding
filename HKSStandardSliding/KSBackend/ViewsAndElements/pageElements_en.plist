@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>slidingAnimation</key>
-	<integer>1</integer>
+	<integer>0</integer>
 	<key>naviBarBackground</key>
-	<string>0xff5c5c5c</string>
-	<key>naviBarTint</key>
 	<string>0xffffffff</string>
+	<key>naviBarTint</key>
+	<string>0xff00ffff</string>
 	<key>naviTitleColor</key>
-	<string>0xff005aff</string>
+	<string>0xff000000</string>
 	<key>views</key>
 	<array>
 		<dict>

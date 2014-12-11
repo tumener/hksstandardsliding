@@ -48,5 +48,12 @@
 #define HKSNaviWebView                                      @"HKSNaviWebView"
 #define HKSNaviEmptyView                                    @"HKSNaviEmptyView"
 
+// Identifiers for tableViewCell
+#define HKSBasicTableViewCellId                             @"HKSBasicTableViewCell"
+#define HKSImageLabelTableViewCellId                        @"HKSImageLabelTableViewCell"
+#define HKSImageTitleLabelTableViewCellId                   @"HKSImageTitleLabelTableViewCell"
+
+// TableViewCell height
+
 
 

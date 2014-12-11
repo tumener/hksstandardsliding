@@ -10,6 +10,7 @@
 #import "UIViewController+ECSlidingViewController.h"
 #import "UIColor+RGBString.h"
 #import "HKSDefinitions.h"
+#import "HKSBasicTableViewCell.h"
 
 //  viewControllers
 #import "HKSNaviStartViewController.h"
@@ -48,9 +49,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HKSBasicTableViewCell" forIndexPath:indexPath];
+    /*
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:HKSBasicTableViewCellId forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.textColor = [UIColor colorFromRGBString:_menueViewSettings[@"textColor"]];
     cell.textLabel.text = [_menueViewSettings[@"rows"] objectAtIndex:indexPath.row][@"title"];
+     */
+    HKSBasicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:HKSBasicTableViewCellId forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor clearColor];
+    cell.title.textColor = [UIColor colorFromRGBString:_menueViewSettings[@"textColor"]];
+    cell.title.text = [_menueViewSettings[@"rows"] objectAtIndex:indexPath.row][@"title"];
     return cell;
 }
 
@@ -104,6 +112,9 @@
     [self.slidingViewController resetTopViewAnimated:YES];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60.0;
+}
 
 #pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation

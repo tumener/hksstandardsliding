@@ -56,6 +56,81 @@
     return [[UIAlertView alloc] initWithTitle:NSLocalizedString(LSCommonError, nil) message:NSLocalizedString(LSCheckInternetMsg, nil) delegate:nil cancelButtonTitle:NSLocalizedString(LSCommonOk, nil) otherButtonTitles:nil, nil];
 }
 
+- (void)updateFileNamesAndSize
+{
+    NSString *urlString = kDocumentsFtpRootUrl;
+    FMServer *server = [FMServer serverWithDestination:urlString username:kDefaultUserFtpUName password:kDefaultUserFtpPswd];
+    server.port = 21;
+    NSInteger number = 0;
+    double downLoadSize = 0.0;
+    
+    if([_ftpManager checkLogin:server]){
+        NSLog(@"!!\ncheck login Success!\n");
+        NSArray *contentsOfServer = [[NSArray alloc] initWithArray:[_ftpManager contentsOfServer:server]];
+        NSString *currentFilePath = kSettingsLocalBasePath;
+        [self creatDirectoryAtPath:currentFilePath];
+        
+        for(int i=0;i<contentsOfServer.count;i++){
+            NSDictionary *resource = [[NSDictionary alloc] initWithDictionary:[contentsOfServer objectAtIndex:i]];
+            //if(i==0){NSLog(@"resorceKeys:%@ values:%@", resource.allKeys, resource.allValues);}
+            
+            NSString *fileName = resource[(id)kCFFTPResourceName];
+            NSInteger fileType = [resource[(id)kCFFTPResourceType] intValue];
+            if(![fileName isEqualToString:@"."] && ! [fileName isEqualToString:@".."]){
+                NSString *newLocalPath = currentFilePath;
+                NSString *newUrlString = [NSString stringWithFormat:@"%@/%@/", urlString, fileName];
+                if(fileType==FTPResourceDirectory){
+                    newLocalPath = [NSString stringWithFormat:@"%@/%@/", newLocalPath, fileName];
+                    [self creatDirectoryAtPath:newLocalPath];
+                    server = [FMServer serverWithDestination:newUrlString username:kDefaultUserFtpUName password:kDefaultUserFtpPswd];
+                    server.port = 21;
+                    
+                    NSArray *contentsOfNewServer = [[NSArray alloc] initWithArray:[_ftpManager contentsOfServer:server]];
+                    for(int j=0; j<contentsOfNewServer.count; j++){
+                        NSDictionary *theResource = [[NSDictionary alloc] initWithDictionary:[contentsOfNewServer objectAtIndex:j]];
+                        NSString *theFileName = theResource[(id)kCFFTPResourceName];
+                        NSInteger theFileType = [theResource[(id)kCFFTPResourceType] intValue];
+                        
+                        if(![theFileName isEqualToString:@"."] && ![theFileName isEqualToString:@".."]){
+                            if(theFileType == FTPResourceDocument){
+                                NSDate *fileModDate = theResource[(id)kCFFTPResourceModDate];
+                                NSDate *lastUpdateDate = [_settings lastModifiedForDocument:theFileName];
+                                NSLog(@"last updateDate:%@ fileModDate:%@",lastUpdateDate ,fileModDate);
+                                // first date eallier as the second one
+                                if([lastUpdateDate compare:fileModDate]==NSOrderedAscending){
+                                    NSLog(@"file:%@ added to download!", theFileName);
+                                    double theSize = [theResource[(id)kCFFTPResourceSize] doubleValue];
+                                    downLoadSize += theSize;
+                                    number++;
+                                }
+                            }
+                        }
+                    }
+                }
+                else if(fileType==FTPResourceDocument){
+                    NSDate *fileModDate = resource[(id)kCFFTPResourceModDate];
+                    NSDate *lastUpdateDate = [_settings lastModifiedForDocument:fileName];
+                    NSLog(@"last updateDate:%@ fileModDate:%@",lastUpdateDate ,fileModDate);
+                    // first date eallier as the second one
+                    if([lastUpdateDate compare:fileModDate]==NSOrderedAscending){
+                        NSLog(@"file:%@ added to download", fileName);
+                        double theSize = [resource[(id)kCFFTPResourceSize] doubleValue];
+                        downLoadSize += theSize;
+                        number++;
+                    }
+                }
+            }
+        }
+    }
+    else{
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(LSConnectionErrorTitle, nil) message:NSLocalizedString(LSConnectionErrorMsg, nil) delegate:nil cancelButtonTitle:NSLocalizedString(LSCommonOk, nil) otherButtonTitles:nil, nil] show];
+        NSLog(@"check Login Error!");
+    }
+    self.downLoadSize = downLoadSize;
+    self.fileNumber = number;
+}
+
+
 - (void)checkAndStartDownLoader
 {
     NSLog(@"number of files to douwload:%d and totle size:%f",(int)self.fileNumber, self.downLoadSize);
@@ -139,10 +214,13 @@
 {
 //    dispatch_async(dispatch_get_main_queue(), ^{
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        FMServer *newServer = [FMServer serverWithDestination:url username:kDefaultUserFtpUName password:kDefaultUserFtpPswd];
-        newServer.port = 21;
-        BOOL success = [_ftpManager downloadFile:fileName toDirectory:[NSURL URLWithString:destination] fromServer:newServer];
-        NSLog(@"downloading success:%@", success?@"YES":@"NO");
+    FMServer *newServer = [FMServer serverWithDestination:url username:kDefaultUserFtpUName password:kDefaultUserFtpPswd];
+    newServer.port = 21;
+    BOOL success = [_ftpManager downloadFile:fileName toDirectory:[NSURL URLWithString:destination] fromServer:newServer];
+    if(success){
+        [_settings setLastModifiedDate:[NSDate date] forDocument:fileName];
+    }
+    NSLog(@"downloading success:%@", success?@"YES":@"NO");
 //    });
 }
 
@@ -169,79 +247,6 @@
     return _fileNumber;
 }
 
-- (void)updateFileNamesAndSize
-{
-    NSString *urlString = kDocumentsFtpRootUrl;
-    FMServer *server = [FMServer serverWithDestination:urlString username:kDefaultUserFtpUName password:kDefaultUserFtpPswd];
-    server.port = 21;
-    NSInteger number = 0;
-    double downLoadSize = 0.0;
-    
-    if([_ftpManager checkLogin:server]){
-        NSLog(@"!!\ncheck login Success!\n");
-        NSArray *contentsOfServer = [[NSArray alloc] initWithArray:[_ftpManager contentsOfServer:server]];
-        NSString *currentFilePath = kSettingsLocalBasePath;
-        [self creatDirectoryAtPath:currentFilePath];
-        
-        for(int i=0;i<contentsOfServer.count;i++){
-            NSDictionary *resource = [[NSDictionary alloc] initWithDictionary:[contentsOfServer objectAtIndex:i]];
-            if(i==0){NSLog(@"resorceKeys:%@ values:%@", resource.allKeys, resource.allValues);}
-            
-            NSString *fileName = resource[(id)kCFFTPResourceName];
-            NSInteger fileType = [resource[(id)kCFFTPResourceType] intValue];
-            if(![fileName isEqualToString:@"."] && ! [fileName isEqualToString:@".."]){
-                NSString *newLocalPath = currentFilePath;
-                NSString *newUrlString = [NSString stringWithFormat:@"%@/%@/", urlString, fileName];
-                if(fileType==FTPResourceDirectory){
-                    newLocalPath = [NSString stringWithFormat:@"%@/%@/", newLocalPath, fileName];
-                    [self creatDirectoryAtPath:newLocalPath];
-                    server = [FMServer serverWithDestination:newUrlString username:kDefaultUserFtpUName password:kDefaultUserFtpPswd];
-                    server.port = 21;
-                    
-                    NSArray *contentsOfNewServer = [[NSArray alloc] initWithArray:[_ftpManager contentsOfServer:server]];
-                    for(int j=0; j<contentsOfNewServer.count; j++){
-                        NSDictionary *theResource = [[NSDictionary alloc] initWithDictionary:[contentsOfNewServer objectAtIndex:j]];
-                        NSString *theFileName = theResource[(id)kCFFTPResourceName];
-                        NSInteger theFileType = [theResource[(id)kCFFTPResourceType] intValue];
-                        
-                        if(![theFileName isEqualToString:@"."] && ![theFileName isEqualToString:@".."]){
-                            if(theFileType == FTPResourceDocument){
-                                NSDate *fileModDate = theResource[(id)kCFFTPResourceModDate];
-                                NSDate *lastUpdateDate = [_settings lastModifiedForDocument:theFileName];
-                                NSLog(@"last updateDate:%@ fileModDate:%@",lastUpdateDate ,fileModDate);
-                                // first date eallier as the second one
-                                if([lastUpdateDate compare:fileModDate]==NSOrderedAscending){
-                                    NSLog(@"file:%@ added to download!", theFileName);
-                                    double theSize = [theResource[(id)kCFFTPResourceSize] doubleValue];
-                                    downLoadSize += theSize;
-                                    number++;
-                                }
-                            }
-                        }
-                    }
-                }
-                else if(fileType==FTPResourceDocument){
-                    NSDate *fileModDate = resource[(id)kCFFTPResourceModDate];
-                    NSDate *lastUpdateDate = [_settings lastModifiedForDocument:fileName];
-                    NSLog(@"last updateDate:%@ fileModDate:%@",lastUpdateDate ,fileModDate);
-                    // first date eallier as the second one
-                    if([lastUpdateDate compare:fileModDate]==NSOrderedAscending){
-                        NSLog(@"file:%@ added to download", fileName);
-                        double theSize = [resource[(id)kCFFTPResourceSize] doubleValue];
-                        downLoadSize += theSize;
-                        number++;
-                    }
-                }
-            }
-        }
-    }
-    else{
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(LSConnectionErrorTitle, nil) message:NSLocalizedString(LSConnectionErrorMsg, nil) delegate:nil cancelButtonTitle:NSLocalizedString(LSCommonOk, nil) otherButtonTitles:nil, nil] show];
-        NSLog(@"check Login Error!");
-    }
-    self.downLoadSize = downLoadSize;
-    self.fileNumber = number;
-}
 
 #pragma mark - FTPManager delegate
 - (void)ftpManagerUploadProgressDidChange:(NSDictionary *)processInfo{
@@ -262,9 +267,6 @@
         _fileNumber--;
         if(_fileNumber==0){
             NSLog(@"download done successfully!");
-            for(NSString *file in _downloadingFiles){
-                [_settings setLastModifiedDate:[NSDate date] forDocument:file];
-            }
         }
     }
 }
