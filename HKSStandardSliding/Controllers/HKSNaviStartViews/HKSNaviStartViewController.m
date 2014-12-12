@@ -30,9 +30,26 @@
     NSString *startImagePath = [kSettingsImagePath stringByAppendingPathComponent:_viewSettings[@"imageName"]];
     NSLog(@"imagePath:%@", startImagePath);
     self.startImage.image = [UIImage imageWithContentsOfFile:startImagePath];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
     self.descriptionLabel.text = _viewSettings[@"description"];
-    self.descriptionHeight.constant = [self descriptionHeighWithText:_viewSettings[@"description"]]+10;
+    CGSize theSize = [self descriptionHeighWithText:_viewSettings[@"description"]];
+    self.descriptionHeight.constant = theSize.height+60;
+//    self.descriptionWidth.constant = theSize.width;
+    CGSize imgViewSize = self.startImage.frame.size;
+    CGSize imageSize = self.startImage.image.size;
+    
+    NSLog(@"viewSize:%@ imageSize:%@", NSStringFromCGSize(imgViewSize), NSStringFromCGSize(imageSize));
+    float targetHeight = imageSize.height/imageSize.width*imgViewSize.height;
+    if((imgViewSize.height/imgViewSize.width)>(imageSize.height/imageSize.width)){
+        self.imageHeight.constant = targetHeight;
+    }
+    NSLog(@"startImageSize:%@ targetHeight:%.1f", NSStringFromCGRect(self.startImage.frame), targetHeight);
+    
+    [self.descriptionLabel setCenter:CGPointMake(_startImage.center.x, _descriptionLabel.center.y)];
+    
 }
 
 - (NSDictionary*)viewSettings{
@@ -48,13 +65,14 @@
 }
 
 #pragma -mark- private functions
-- (CGFloat)descriptionHeighWithText:(NSString*)text
+- (CGSize)descriptionHeighWithText:(NSString*)text
 {
-    CGFloat height = [text
-                      boundingRectWithSize:CGSizeMake(self.view.bounds.size.width-20, 220)
+    CGFloat viewWidth = self.startImage.frame.size.width;
+    CGRect theFrame = [text boundingRectWithSize:CGSizeMake(viewWidth, 480)
                       options:NSStringDrawingUsesLineFragmentOrigin
-                      attributes:@{ NSFontAttributeName:[UIFont systemFontOfSize:17] }context:nil].size.height;
-    return height;
+                      attributes:@{ NSFontAttributeName:_descriptionLabel.font }context:nil];
+    return theFrame.size;
+    
 }
 
 #pragma -mark- actions

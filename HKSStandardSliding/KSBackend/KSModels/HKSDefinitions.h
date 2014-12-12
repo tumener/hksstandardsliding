@@ -54,6 +54,9 @@
 #define HKSImageTitleLabelTableViewCellId                   @"HKSImageTitleLabelTableViewCell"
 
 // TableViewCell height
-
+#define kDefaultTableViewCellHeight                         44
+#define kBasicTableViewCellHeight                           60
+#define kImageLabelTableViewCellHeight                      80
+#define kImageTitleLabelTableViewCellHeight                 120
 
 

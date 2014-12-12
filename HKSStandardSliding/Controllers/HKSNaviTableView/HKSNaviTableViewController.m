@@ -48,9 +48,19 @@
     return [_viewSettings[@"cells"] count];
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if()
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *cellSettings = (NSDictionary*)[_viewSettings[@"cells"] objectAtIndex:indexPath.row];
+    if([cellSettings[@"identifier"] isEqualToString:HKSBasicTableViewCellId]){
+        return kBasicTableViewCellHeight;
+    }
+    else if ([cellSettings[@"identifier"] isEqualToString:HKSImageLabelTableViewCellId]){
+        return kImageLabelTableViewCellHeight;
+    }
+    else if ([cellSettings[@"identifier"] isEqualToString:HKSImageTitleLabelTableViewCellId]){
+        return kImageTitleLabelTableViewCellHeight;
+    }
+    return kDefaultTableViewCellHeight;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -75,7 +85,6 @@
         imageTitleLabelCell.detailTextLabel.text = cellSettings[@"description"];
         cell = imageTitleLabelCell;
     }
-    
     return cell;
 }
 
