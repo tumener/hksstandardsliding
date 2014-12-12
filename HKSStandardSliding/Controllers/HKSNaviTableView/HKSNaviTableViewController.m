@@ -73,16 +73,16 @@
         cell = basicCell;
     }
     else if ([cellSettings[@"identifier"] isEqualToString:HKSImageLabelTableViewCellId]){
-        HKSImageTitleLabelTableViewCell *imageLabelCell = [tableView dequeueReusableCellWithIdentifier:HKSImageLabelTableViewCellId forIndexPath:indexPath];
-        imageLabelCell.imageView.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",kSettingsImagePath, cellSettings[@"imageName"]]];
+        HKSImageLabelTableViewCell *imageLabelCell = [tableView dequeueReusableCellWithIdentifier:HKSImageLabelTableViewCellId forIndexPath:indexPath];
+        imageLabelCell.theImageView.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",kSettingsImagePath, cellSettings[@"imageName"]]];
         imageLabelCell.title.text = title;
         cell = imageLabelCell;
     }
     else if ([cellSettings[@"identifier"] isEqualToString:HKSImageTitleLabelTableViewCellId]){
         HKSImageTitleLabelTableViewCell *imageTitleLabelCell = [tableView dequeueReusableCellWithIdentifier:HKSImageTitleLabelTableViewCellId forIndexPath:indexPath];
         imageTitleLabelCell.title.text = title;
-        imageTitleLabelCell.imageView.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",kSettingsImagePath, cellSettings[@"imageName"]]];
-        imageTitleLabelCell.detailTextLabel.text = cellSettings[@"description"];
+        imageTitleLabelCell.theImageView.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",kSettingsImagePath, cellSettings[@"imageName"]]];
+        imageTitleLabelCell.descriptions.text = cellSettings[@"description"];
         cell = imageTitleLabelCell;
     }
     return cell;
