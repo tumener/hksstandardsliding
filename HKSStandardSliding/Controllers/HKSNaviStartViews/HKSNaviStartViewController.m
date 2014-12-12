@@ -34,22 +34,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    self.descriptionLabel.text = _viewSettings[@"description"];
-    CGSize theSize = [self descriptionHeighWithText:_viewSettings[@"description"]];
-    self.descriptionHeight.constant = theSize.height+60;
-//    self.descriptionWidth.constant = theSize.width;
-    CGSize imgViewSize = self.startImage.frame.size;
-    CGSize imageSize = self.startImage.image.size;
-    
-    NSLog(@"viewSize:%@ imageSize:%@", NSStringFromCGSize(imgViewSize), NSStringFromCGSize(imageSize));
-    float targetHeight = imageSize.height/imageSize.width*imgViewSize.height;
-    if((imgViewSize.height/imgViewSize.width)>(imageSize.height/imageSize.width)){
-        self.imageHeight.constant = targetHeight;
-    }
-    NSLog(@"startImageSize:%@ targetHeight:%.1f", NSStringFromCGRect(self.startImage.frame), targetHeight);
-    
-    [self.descriptionLabel setCenter:CGPointMake(_startImage.center.x, _descriptionLabel.center.y)];
-    
+    [self updateConstraints];
 }
 
 - (NSDictionary*)viewSettings{
@@ -64,10 +49,36 @@
     return _viewSettings;
 }
 
+- (void)updateConstraints{
+    
+    CGSize imgViewSize = self.startImage.frame.size;
+    CGSize imageSize = self.startImage.image.size;
+    NSLog(@"viewSize:%@ imageSize:%@", NSStringFromCGSize(imgViewSize), NSStringFromCGSize(imageSize));
+    
+    float targetHeight = imageSize.height/imageSize.width*imgViewSize.height;
+    float targetWidth = imageSize.width/imageSize.height*(targetHeight-10);
+    
+    self.descriptionLabel.text = _viewSettings[@"description"];
+    CGSize theSize = [self descriptionHeighWithText:_viewSettings[@"description"] withBoudingSize:CGSizeMake(targetWidth, self.view.bounds.size.height)];
+    BOOL heightToScal = (imgViewSize.height/imgViewSize.width)>(imageSize.height/imageSize.width);
+    
+    
+    if(heightToScal){
+        self.imageHeight.constant = targetHeight;
+    }
+    self.descriptionWidth.constant = heightToScal?targetWidth:imgViewSize.width-20;
+    self.descriptionHeight.constant = theSize.height+60;
+    
+    NSLog(@"startImageSize:%@ targetHeight:%.1f", NSStringFromCGRect(self.startImage.frame), targetHeight);
+    
+    [self.descriptionLabel setCenter:CGPointMake(_startImage.center.x, _descriptionLabel.center.y)];
+}
+
+
 #pragma -mark- private functions
-- (CGSize)descriptionHeighWithText:(NSString*)text
+- (CGSize)descriptionHeighWithText:(NSString*)text withBoudingSize:(CGSize)targetSize
 {
-    CGFloat viewWidth = self.startImage.frame.size.width;
+    CGFloat viewWidth = targetSize.width;
     CGRect theFrame = [text boundingRectWithSize:CGSizeMake(viewWidth, 480)
                       options:NSStringDrawingUsesLineFragmentOrigin
                       attributes:@{ NSFontAttributeName:_descriptionLabel.font }context:nil];
