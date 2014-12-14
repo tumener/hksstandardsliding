@@ -53,9 +53,15 @@
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *cellSettings = (NSDictionary*)[_viewSettings[@"cells"] objectAtIndex:indexPath.row];
     float width = 300.0;
-    float height = 320.0;
-    height += [cellSettings[@"title"] length]>0?40:0;
-    height += [cellSettings[@"description"] length]>0?80:0;
+    float height = 300.0;
+    if([cellSettings[@"identifier"] isEqualToString:HKSImageTitleCollectionCellId]){
+        
+    }else if([cellSettings[@"identifier"] isEqualToString:HKSTitleImageInfoCollectionCellId]){
+        height = 420.0;
+    }
+    
+//    height += [cellSettings[@"title"] length]>0?40:0;
+//    height += [cellSettings[@"description"] length]>0?80:0;
     return CGSizeMake(width, height);
 }
 
@@ -63,29 +69,56 @@
     NSDictionary *cellSettings = (NSDictionary*)[_viewSettings[@"cells"] objectAtIndex:indexPath.row];
     NSString *cellIdentifier = cellSettings[@"identifier"];
     
-//    UICollectionViewCell *cell;
+    UICollectionViewCell *cell;
+    NSLog(@"identifier:%@", cellIdentifier);
     
-//    HKSTitleImageInfoCollectionViewCell *cell = (HKSTitleImageInfoCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"HKSTitleImageInfoCollectionViewCell" forIndexPath:indexPath];
-//    [cell cellConfigureWithSettings:cellSettings atIndexPath:indexPath];
-    
-//    if([cellIdentifier isEqualToString:HKSImageCollectionViewCellId]){
-//        HKSImageCollectionViewCell *theCell = (HKSImageCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"HKSImageCollectionViewCell" forIndexPath:indexPath];
-//        [theCell cellConfigureWithSettings:cellSettings atIndexPath:indexPath];
-//        theCell.backgroundColor = [UIColor clearColor];
-//        return theCell;
-//    }else if([cellIdentifier isEqualToString:HKSImageTitleCollectionCellId]){
-//        HKSImageTitleCollectionViewCell *theCell = (HKSImageTitleCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"HKSImageTitleCollectionViewCell" forIndexPath:indexPath];
-//        [theCell cellConfigureWithSettings:cellSettings atIndexPath:indexPath];
-//        theCell.backgroundColor = [UIColor clearColor];
-//        return theCell;
-//    }else if([cellIdentifier isEqualToString:HKSTitleImageInfoCollectionCellId]){
+    if([cellIdentifier isEqualToString:HKSImageCollectionViewCellId]){
+        HKSImageCollectionViewCell *theCell = (HKSImageCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"HKSImageCollectionViewCell" forIndexPath:indexPath];
+        [theCell cellConfigureWithSettings:cellSettings atIndexPath:indexPath];
+        cell = theCell;
+        /*
+        HKSImageTitleCollectionViewCell *theCell = (HKSImageTitleCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"HKSImageTitleCollectionViewCell" forIndexPath:indexPath];
+        [theCell cellConfigureWithSettings:cellSettings atIndexPath:indexPath];
+        theCell.backgroundColor = [UIColor clearColor];
+        cell = theCell;
+        
         HKSTitleImageInfoCollectionViewCell *theCell = (HKSTitleImageInfoCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"HKSTitleImageInfoCollectionViewCell" forIndexPath:indexPath];
         [theCell cellConfigureWithSettings:cellSettings atIndexPath:indexPath];
-        theCell.backgroundColor = [UIColor lightGrayColor];
-        return theCell;
-//    }
-//
-//    return cell;
+        cell = theCell;
+        */
+    }else if([cellIdentifier isEqualToString:HKSImageTitleCollectionCellId]){
+        /*
+        HKSImageCollectionViewCell *theCell = (HKSImageCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"HKSImageCollectionViewCell" forIndexPath:indexPath];
+        [theCell cellConfigureWithSettings:cellSettings atIndexPath:indexPath];
+        theCell.backgroundColor = [UIColor clearColor];
+        cell = theCell;
+        */
+        HKSImageTitleCollectionViewCell *theCell = (HKSImageTitleCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"HKSImageTitleCollectionViewCell" forIndexPath:indexPath];
+        [theCell cellConfigureWithSettings:cellSettings atIndexPath:indexPath];
+        cell = theCell;
+        /*
+        HKSTitleImageInfoCollectionViewCell *theCell = (HKSTitleImageInfoCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"HKSTitleImageInfoCollectionViewCell" forIndexPath:indexPath];
+        [theCell cellConfigureWithSettings:cellSettings atIndexPath:indexPath];
+        cell = theCell;
+        */
+    }else if([cellIdentifier isEqualToString:HKSTitleImageInfoCollectionCellId]){
+        /*
+        HKSImageCollectionViewCell *theCell = (HKSImageCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"HKSImageCollectionViewCell" forIndexPath:indexPath];
+        [theCell cellConfigureWithSettings:cellSettings atIndexPath:indexPath];
+        theCell.backgroundColor = [UIColor clearColor];
+        cell = theCell;
+        
+        HKSImageTitleCollectionViewCell *theCell = (HKSImageTitleCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"HKSImageTitleCollectionViewCell" forIndexPath:indexPath];
+        [theCell cellConfigureWithSettings:cellSettings atIndexPath:indexPath];
+        theCell.backgroundColor = [UIColor clearColor];
+        cell = theCell;
+        */
+        HKSTitleImageInfoCollectionViewCell *theCell = (HKSTitleImageInfoCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"HKSTitleImageInfoCollectionViewCell" forIndexPath:indexPath];
+        [theCell cellConfigureWithSettings:cellSettings atIndexPath:indexPath];
+        cell = theCell;
+    }
+
+    return cell;
 }
 
 #pragma mark <UICollectionViewDelegate>

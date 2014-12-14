@@ -17,8 +17,17 @@
             self.theImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:settings[@"imageUrl"]]]];
         });
     }
+    else if([settings[@"imageName"] length]>0){
+        NSFileManager *filemanager = [[NSFileManager alloc] init];
+        NSString *fileName = [NSString stringWithFormat:@"%@/%@",kSettingsImagePath, settings[@"imageName"]];
+        if([filemanager fileExistsAtPath:fileName]){
+            self.theImageView.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",kSettingsImagePath, settings[@"imageName"]]];
+        }else{
+            self.theImageView.image = [UIImage imageNamed:@"startimage"];
+        }
+    }
     else{
-        self.theImageView.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",kSettingsImagePath, settings[@"imageName"]]];
+        self.theImageView.image = [UIImage imageNamed:@"startimage"];
     }
 }
 @end
