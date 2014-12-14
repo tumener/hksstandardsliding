@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 extern NSDictionary *g_dGeneralViewsSettings;
 @interface HKSNaviCollectionViewController : UICollectionViewController
+< UICollectionViewDataSource, UICollectionViewDelegate >
+
 @property (nonatomic, strong) NSDictionary *viewSettings;
+
 @end

@@ -49,6 +49,9 @@
 		196CB5FF1A2DF89D0072B41A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 196CB5FE1A2DF89D0072B41A /* AppDelegate.m */; };
 		19A7CE241A30A1E200F0EB42 /* UIColor+RGBString.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A7CE231A30A1E200F0EB42 /* UIColor+RGBString.m */; };
 		19CDD32A1A319B8F006469E5 /* HKSNaviEmptyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CDD3291A319B8F006469E5 /* HKSNaviEmptyViewController.m */; };
+		19E6ABC91A3B35190089C7FA /* HKSTitleImageInfoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E6ABC81A3B35190089C7FA /* HKSTitleImageInfoCollectionViewCell.m */; };
+		19E6ABCC1A3B35530089C7FA /* HKSImageTitleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E6ABCB1A3B35530089C7FA /* HKSImageTitleCollectionViewCell.m */; };
+		19E6ABCF1A3B37350089C7FA /* HKSImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E6ABCE1A3B37350089C7FA /* HKSImageCollectionViewCell.m */; };
 		3C6BE80CC40AE483DA766F37 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D7BAFC533ECA2959DD986EE2 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -144,6 +147,12 @@
 		19A7CE231A30A1E200F0EB42 /* UIColor+RGBString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RGBString.m"; sourceTree = "<group>"; };
 		19CDD3281A319B8F006469E5 /* HKSNaviEmptyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKSNaviEmptyViewController.h; sourceTree = "<group>"; };
 		19CDD3291A319B8F006469E5 /* HKSNaviEmptyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKSNaviEmptyViewController.m; sourceTree = "<group>"; };
+		19E6ABC71A3B35190089C7FA /* HKSTitleImageInfoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKSTitleImageInfoCollectionViewCell.h; sourceTree = "<group>"; };
+		19E6ABC81A3B35190089C7FA /* HKSTitleImageInfoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKSTitleImageInfoCollectionViewCell.m; sourceTree = "<group>"; };
+		19E6ABCA1A3B35530089C7FA /* HKSImageTitleCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKSImageTitleCollectionViewCell.h; sourceTree = "<group>"; };
+		19E6ABCB1A3B35530089C7FA /* HKSImageTitleCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKSImageTitleCollectionViewCell.m; sourceTree = "<group>"; };
+		19E6ABCD1A3B37350089C7FA /* HKSImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKSImageCollectionViewCell.h; sourceTree = "<group>"; };
+		19E6ABCE1A3B37350089C7FA /* HKSImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKSImageCollectionViewCell.m; sourceTree = "<group>"; };
 		3F409C27DF98083F53BC0AE3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B58460510999D1FD134EE1C4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D7BAFC533ECA2959DD986EE2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -270,6 +279,7 @@
 		19212DB31A2E6948003D4F8F /* HKSNaviCollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				19E6ABC61A3B34840089C7FA /* CustomCells */,
 				19212DC11A2E7212003D4F8F /* HKSNaviCollectionViewController.h */,
 				19212DC21A2E7212003D4F8F /* HKSNaviCollectionViewController.m */,
 			);
@@ -465,6 +475,19 @@
 			path = HKSNaviEmptyViewController;
 			sourceTree = "<group>";
 		};
+		19E6ABC61A3B34840089C7FA /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				19E6ABCD1A3B37350089C7FA /* HKSImageCollectionViewCell.h */,
+				19E6ABCE1A3B37350089C7FA /* HKSImageCollectionViewCell.m */,
+				19E6ABCA1A3B35530089C7FA /* HKSImageTitleCollectionViewCell.h */,
+				19E6ABCB1A3B35530089C7FA /* HKSImageTitleCollectionViewCell.m */,
+				19E6ABC71A3B35190089C7FA /* HKSTitleImageInfoCollectionViewCell.h */,
+				19E6ABC81A3B35190089C7FA /* HKSTitleImageInfoCollectionViewCell.m */,
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
 		28FE4E48FDF572DD2048CFD1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -631,12 +654,14 @@
 				19212DA81A2DFBE8003D4F8F /* UILabelWithInset.m in Sources */,
 				19212DA21A2DFBE8003D4F8F /* MyView.m in Sources */,
 				19212DD61A2E733B003D4F8F /* HKSViewController.m in Sources */,
+				19E6ABCC1A3B35530089C7FA /* HKSImageTitleCollectionViewCell.m in Sources */,
 				19CDD32A1A319B8F006469E5 /* HKSNaviEmptyViewController.m in Sources */,
 				196CB5FB1A2DF8210072B41A /* KSSettings.m in Sources */,
 				19212D9A1A2DFBE8003D4F8F /* MEDynamicTransition.m in Sources */,
 				196CB5F91A2DF8210072B41A /* KSDownloader.m in Sources */,
 				19212DA11A2DFBE8003D4F8F /* DrawSignView.m in Sources */,
 				19212DA91A2DFBE8003D4F8F /* UITextFieldWithInset.m in Sources */,
+				19E6ABC91A3B35190089C7FA /* HKSTitleImageInfoCollectionViewCell.m in Sources */,
 				19212DC91A2E724F003D4F8F /* HKSNaviTableViewController.m in Sources */,
 				19A7CE241A30A1E200F0EB42 /* UIColor+RGBString.m in Sources */,
 				19212DA71A2DFBE8003D4F8F /* UIImage+KSExtention.m in Sources */,
@@ -655,6 +680,7 @@
 				195BA8CF1A339FEF00C3D263 /* HKSBasicTableViewCell.m in Sources */,
 				196CB5FF1A2DF89D0072B41A /* AppDelegate.m in Sources */,
 				19212DC01A2E71F0003D4F8F /* HKSLeftMenueViewController.m in Sources */,
+				19E6ABCF1A3B37350089C7FA /* HKSImageCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

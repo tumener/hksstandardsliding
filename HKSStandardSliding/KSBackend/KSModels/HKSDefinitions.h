@@ -59,4 +59,23 @@
 #define kImageLabelTableViewCellHeight                      80
 #define kImageTitleLabelTableViewCellHeight                 120
 
+// Identifiers for CollectionCell
+#define HKSImageCollectionViewCellId                        @"HKSImageCollectionViewCell"
+#define HKSImageTitleCollectionCellId                       @"HKSImageTitleCollectionViewCell"
+#define HKSTitleImageInfoCollectionCellId                   @"HKSTitleImageInfoCollectionViewCell"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

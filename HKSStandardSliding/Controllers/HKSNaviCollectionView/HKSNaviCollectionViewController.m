@@ -8,24 +8,28 @@
 
 #import "HKSNaviCollectionViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
-#import "MEDynamicTransition.h"
-#import "METransitions.h"
 #import "HKSDefinitions.h"
+#import "HKSImageCollectionViewCell.h"
+#import "HKSImageTitleCollectionViewCell.h"
+#import "HKSTitleImageInfoCollectionViewCell.h"
 
 @interface HKSNaviCollectionViewController ()
-@property (nonatomic, strong) METransitions *transitions;
-@property (nonatomic, strong) UIPanGestureRecognizer *dynamicTransitionPanGesture;
 @end
 
 @implementation HKSNaviCollectionViewController
-
-static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"%s, viewsSettings:%@",__PRETTY_FUNCTION__, _viewSettings);
     self.title = self.viewSettings[@"title"];
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+//    [self.collectionView registerClass:[HKSImageCollectionViewCell class] forCellWithReuseIdentifier:HKSImageCollectionViewCellId];
+//    [self.collectionView registerClass:[HKSImageTitleCollectionViewCell class] forCellWithReuseIdentifier:HKSImageTitleCollectionCellId];
+//    [self.collectionView registerClass:[HKSTitleImageInfoCollectionViewCell class] forCellWithReuseIdentifier:HKSTitleImageInfoCollectionCellId];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+//    [self.collectionView reloadData];
 }
 
 #pragma -mark- actions
@@ -35,68 +39,53 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 #pragma -mark- private functions
-/*
-- (void)initSlidingAnimation
-{
-    [self transitions].dynamicTransition.slidingViewController = self.slidingViewController;
-    NSDictionary *transitionData = self.transitions.all[[g_dGeneralViewsSettings[@"slidingAnimation"] intValue]];
-    id<ECSlidingViewControllerDelegate> transition = transitionData[@"transition"];
-    if (transition == (id)[NSNull null]) {
-        self.slidingViewController.delegate = nil;
-    } else {
-        self.slidingViewController.delegate = transition;
-    }
-    NSString *transitionName = transitionData[@"name"];
-    if ([transitionName isEqualToString:METransitionNameDynamic]) {
-        self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGestureCustom;
-        self.slidingViewController.customAnchoredGestures = @[self.dynamicTransitionPanGesture];
-        [self.navigationController.view removeGestureRecognizer:self.slidingViewController.panGesture];
-        [self.navigationController.view addGestureRecognizer:self.dynamicTransitionPanGesture];
-    } else {
-        self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
-        self.slidingViewController.customAnchoredGestures = @[];
-        [self.navigationController.view removeGestureRecognizer:self.dynamicTransitionPanGesture];
-        [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
-    }
-}
-
-#pragma -mark- GestureRecognizer
-- (UIPanGestureRecognizer *)dynamicTransitionPanGesture
-{
-    if (_dynamicTransitionPanGesture) return _dynamicTransitionPanGesture;
-    _dynamicTransitionPanGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.transitions.dynamicTransition action:@selector(handlePanGesture:)];
-    return _dynamicTransitionPanGesture;
-}
-
-#pragma -mark- transitions extensions
-- (METransitions *)transitions
-{
-    if (_transitions){
-        return _transitions;
-    }
-    _transitions = [[METransitions alloc] init];
-    return _transitions;
-}
-*/
 
 #pragma mark <UICollectionViewDataSource>
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#warning Incomplete method implementation -- Return the number of sections
-    return 0;
+    return 1;//[_viewSettings[@"cells"] count];
 }
 
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete method implementation -- Return the number of items in the section
-    return 0;
+    return [_viewSettings[@"cells"] count];
+}
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *cellSettings = (NSDictionary*)[_viewSettings[@"cells"] objectAtIndex:indexPath.row];
+    float width = 300.0;
+    float height = 320.0;
+    height += [cellSettings[@"title"] length]>0?40:0;
+    height += [cellSettings[@"description"] length]>0?80:0;
+    return CGSizeMake(width, height);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    NSDictionary *cellSettings = (NSDictionary*)[_viewSettings[@"cells"] objectAtIndex:indexPath.row];
+    NSString *cellIdentifier = cellSettings[@"identifier"];
     
-    // Configure the cell
+//    UICollectionViewCell *cell;
     
-    return cell;
+//    HKSTitleImageInfoCollectionViewCell *cell = (HKSTitleImageInfoCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"HKSTitleImageInfoCollectionViewCell" forIndexPath:indexPath];
+//    [cell cellConfigureWithSettings:cellSettings atIndexPath:indexPath];
+    
+//    if([cellIdentifier isEqualToString:HKSImageCollectionViewCellId]){
+//        HKSImageCollectionViewCell *theCell = (HKSImageCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"HKSImageCollectionViewCell" forIndexPath:indexPath];
+//        [theCell cellConfigureWithSettings:cellSettings atIndexPath:indexPath];
+//        theCell.backgroundColor = [UIColor clearColor];
+//        return theCell;
+//    }else if([cellIdentifier isEqualToString:HKSImageTitleCollectionCellId]){
+//        HKSImageTitleCollectionViewCell *theCell = (HKSImageTitleCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"HKSImageTitleCollectionViewCell" forIndexPath:indexPath];
+//        [theCell cellConfigureWithSettings:cellSettings atIndexPath:indexPath];
+//        theCell.backgroundColor = [UIColor clearColor];
+//        return theCell;
+//    }else if([cellIdentifier isEqualToString:HKSTitleImageInfoCollectionCellId]){
+        HKSTitleImageInfoCollectionViewCell *theCell = (HKSTitleImageInfoCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"HKSTitleImageInfoCollectionViewCell" forIndexPath:indexPath];
+        [theCell cellConfigureWithSettings:cellSettings atIndexPath:indexPath];
+        theCell.backgroundColor = [UIColor lightGrayColor];
+        return theCell;
+//    }
+//
+//    return cell;
 }
 
 #pragma mark <UICollectionViewDelegate>
