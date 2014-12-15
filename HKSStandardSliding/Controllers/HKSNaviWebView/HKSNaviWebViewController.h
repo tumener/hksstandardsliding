@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HKSNaviWebViewController : UIViewController
+@interface HKSNaviWebViewController : UIViewController < UIWebViewDelegate >
+@property (nonatomic, strong) IBOutlet UIWebView *webView;
 @property (nonatomic, strong) NSDictionary *viewSettings;
 @end
