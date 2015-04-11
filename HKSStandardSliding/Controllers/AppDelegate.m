@@ -16,6 +16,20 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self checkoutSettingsAndImages];
+    
+    return YES;
+}
+
+- (void)checkoutSettingsAndImages{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    
+//    dispatch_async(dispatch_get_main_queue(),^{
+//        
+//    });
+    
+//    });
+    
     KSDownloader *downloader = [KSDownloader newDownLoader];
     [downloader updateFileNamesAndSize];
     [downloader checkAndStartDownLoader];
@@ -25,6 +39,8 @@
     }else{
         g_dGeneralViewsSettings = [[NSDictionary alloc] initWithContentsOfFile:kDefaultSettingsFilePath];
     }
+    
+//    dispatch_async(dispatch_get_main_queue(),^{
     if([g_dGeneralViewsSettings[@"naviBarBackground"] length]>0){
         [[UINavigationBar appearance] setBarTintColor:[UIColor colorFromRGBString:g_dGeneralViewsSettings[@"naviBarBackground"]]];
     }
@@ -40,8 +56,7 @@
                                                    nil];
         [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
     }
-    
-    return YES;
+//    });
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
